@@ -1,0 +1,320 @@
+{
+  "byEntity": {
+    "program_offering": [
+      {
+        "source_name": "Bachelor of Science in Civil Engineering",
+        "slug": "bachelor-of-science-in-civil-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Electrical Engineering",
+        "slug": "bachelor-of-science-in-electrical-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Electronics Engineering",
+        "slug": "bachelor-of-science-in-electronics-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Mechanical Engineering",
+        "slug": "bachelor-of-science-in-mechanical-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Engineering Program",
+        "slug": "master-of-engineering-program",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Civil Engineering major in General Civil Engineering",
+        "slug": "master-of-science-in-civil-engineering-major-in-general-civil-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "General Civil Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Civil Engineering major in Geotechnical Engineering",
+        "slug": "master-of-science-in-civil-engineering-major-in-geotechnical-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Geotechnical Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Civil Engineering major in Structural Engineering",
+        "slug": "master-of-science-in-civil-engineering-major-in-structural-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Structural Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Electrical Engineering major in Power System Engineering",
+        "slug": "master-of-science-in-electrical-engineering-major-in-power-system-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Power System Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Electrical Engineering major in Instrumentation and Control Engineering",
+        "slug": "master-of-science-in-electrical-engineering-major-in-instrumentation-and-control-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Instrumentation and Control Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Electrical Engineering major in Electronics Engineering",
+        "slug": "master-of-science-in-electrical-engineering-major-in-electronics-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Electronics Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Electrical Engineering major in Communications Engineering",
+        "slug": "master-of-science-in-electrical-engineering-major-in-communications-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Communications Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Electrical Engineering",
+        "slug": "master-of-science-in-electrical-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Electrical Engineering major in Computer Engineering",
+        "slug": "master-of-science-in-electrical-engineering-major-in-computer-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Computer Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Mechanical Engineering major in Energy Engineering",
+        "slug": "master-of-science-in-mechanical-engineering-major-in-energy-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Energy Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Science in Mechanical Engineering major in Production Technology",
+        "slug": "master-of-science-in-mechanical-engineering-major-in-production-technology",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Production Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Masters of Engineering Program in Civil Engineering major in Structural Engineering Option",
+        "slug": "masters-of-engineering-program-in-civil-engineering-major-in-structural-engineering-option",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Structural Engineering Option"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Masters of Engineering Program in Civil Engineering major in Geotechnical Engineering Option",
+        "slug": "masters-of-engineering-program-in-civil-engineering-major-in-geotechnical-engineering-option",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Geotechnical Engineering Option"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Masters of Engineering Program in Civil Engineering major in General Civil Engineering Option",
+        "slug": "masters-of-engineering-program-in-civil-engineering-major-in-general-civil-engineering-option",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "General Civil Engineering Option"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Masters of Engineering Program in Electrical Engineering major in Power Engineering Option",
+        "slug": "masters-of-engineering-program-in-electrical-engineering-major-in-power-engineering-option",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Power Engineering Option"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Masters of Engineering Program in Electrical Engineering major in Instrumentation and Computer Engineering Option",
+        "slug": "masters-of-engineering-program-in-electrical-engineering-major-in-instrumentation-and-computer-engineering-option",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Instrumentation and Computer Engineering Option"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Masters of Engineering Program in Electrical Engineering major in Electronics and Communications Engineering Option",
+        "slug": "masters-of-engineering-program-in-electrical-engineering-major-in-electronics-and-communications-engineering-option",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Electronics and Communications Engineering Option"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Masters of Engineering Program in Mechanical Engineering major in Refrigeration and Airconditioning Option",
+        "slug": "masters-of-engineering-program-in-mechanical-engineering-major-in-refrigeration-and-airconditioning-option",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Refrigeration and Airconditioning Option"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Masters of Engineering Program in Mechanical Engineering major in Heat Power Option",
+        "slug": "masters-of-engineering-program-in-mechanical-engineering-major-in-heat-power-option",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Heat Power Option"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Masters of Engineering Program in Mechanical Engineering major in Manufacturing and Production Option",
+        "slug": "masters-of-engineering-program-in-mechanical-engineering-major-in-manufacturing-and-production-option",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [
+          "Manufacturing and Production Option"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      }
+    ]
+  },
+  "warnings": []
+}

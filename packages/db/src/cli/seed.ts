@@ -33,6 +33,8 @@ interface CampusSeed {
   address?: Record<string, string>;
   established?: number;
   description?: string;
+  /** Defaults to 'high'. Taguig is 'low': nothing about it comes from a Taguig source. */
+  confidence?: 'low' | 'medium' | 'high';
 }
 
 interface UnitSeed {
@@ -94,11 +96,12 @@ async function main(): Promise<void> {
           established: c.established ?? null,
           description: c.description ?? null,
           sourceId,
-          confidence: 'high',
+          confidence: c.confidence ?? 'high',
         })
         .onConflictDoUpdate({
           target: campuses.slug,
           set: {
+            confidence: c.confidence ?? 'high',
             name: c.name,
             shortName: c.short_name ?? null,
             kind: c.kind,

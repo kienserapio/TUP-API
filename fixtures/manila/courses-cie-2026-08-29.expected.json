@@ -1,0 +1,287 @@
+{
+  "byEntity": {
+    "program_offering": [
+      {
+        "source_name": "Bachelor of Technology and Livelihood Education major in Information and Communication Technology",
+        "slug": "bachelor-of-technology-and-livelihood-education-major-in-information-and-communication-technology",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Information and Communication Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technology and Livelihood Education major in Home Economics",
+        "slug": "bachelor-of-technology-and-livelihood-education-major-in-home-economics",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Home Economics"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technology and Livelihood Education major in Industrial Arts",
+        "slug": "bachelor-of-technology-and-livelihood-education-major-in-industrial-arts",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Industrial Arts"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical Vocational Teachers Education major in Animation",
+        "slug": "bachelor-of-technical-vocational-teachers-education-major-in-animation",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Animation"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical Vocational Teachers Education major in Beauty Care and Wellness",
+        "slug": "bachelor-of-technical-vocational-teachers-education-major-in-beauty-care-and-wellness",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Beauty Care and Wellness"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical Vocational Teachers Education major in Computer Programming",
+        "slug": "bachelor-of-technical-vocational-teachers-education-major-in-computer-programming",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Computer Programming"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical Vocational Teachers Education major in Electrical",
+        "slug": "bachelor-of-technical-vocational-teachers-education-major-in-electrical",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Electrical"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical Vocational Teachers Education major in Electronics",
+        "slug": "bachelor-of-technical-vocational-teachers-education-major-in-electronics",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Electronics"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical Vocational Teachers Education major in Food Service Management",
+        "slug": "bachelor-of-technical-vocational-teachers-education-major-in-food-service-management",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Food Service Management"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical Vocational Teachers Education major in Fashion and Garment",
+        "slug": "bachelor-of-technical-vocational-teachers-education-major-in-fashion-and-garment",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Fashion and Garment"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical Vocational Teachers Education major in Heat Ventilation & Air Conditioning",
+        "slug": "bachelor-of-technical-vocational-teachers-education-major-in-heat-ventilation-air-conditioning",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Heat Ventilation & Air Conditioning"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical Teacher Education",
+        "slug": "bachelor-of-technical-teacher-education",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Doctor of Education major in Industrial Education Management",
+        "slug": "doctor-of-education-major-in-industrial-education-management",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Industrial Education Management"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Doctor of Education major in Career Guidance",
+        "slug": "doctor-of-education-major-in-career-guidance",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Career Guidance"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Doctor of Technology",
+        "slug": "doctor-of-technology",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Doctor of Philosophy major in Technology Management",
+        "slug": "doctor-of-philosophy-major-in-technology-management",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Technology Management"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Arts in Industrial Education major in Curriculum and Instruction",
+        "slug": "master-of-arts-in-industrial-education-major-in-curriculum-and-instruction",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Curriculum and Instruction"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Arts in Industrial Education major in Educational Technology",
+        "slug": "master-of-arts-in-industrial-education-major-in-educational-technology",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Educational Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Arts in Industrial Education major in Administration and Supervision",
+        "slug": "master-of-arts-in-industrial-education-major-in-administration-and-supervision",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Administration and Supervision"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Arts in Industrial Education major in Guidance and Counseling",
+        "slug": "master-of-arts-in-industrial-education-major-in-guidance-and-counseling",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Guidance and Counseling"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Arts in Teaching major in Technology and Home Economics",
+        "slug": "master-of-arts-in-teaching-major-in-technology-and-home-economics",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [
+          "Technology and Home Economics"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Technology Education",
+        "slug": "master-of-technology-education",
+        "local_name": null,
+        "unit_slug": "cie",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      }
+    ]
+  },
+  "warnings": []
+}

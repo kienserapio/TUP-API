@@ -1,0 +1,719 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    
+    <!--====== Title ======-->
+    <title>TUP-T</title>
+
+    <meta name="facebook-domain-verification" content="akzcf2u1m321a4ue5ci8riu8t4ptmx" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="/assets/images/favicon.webp" type="image/webp">
+
+    <style>
+        /* Full-screen gray background */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #808080; /* Gray background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure it's on top */
+        }
+
+        /* Larger Logo */
+        .loading-logo {
+            width: 150px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 20px; /* Space between logo and loader */
+        }
+
+        /* Smaller Circle Loader */
+        .loader {
+            width: 50px;  /* Smaller size */
+            height: 50px;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-top: 6px solid #ffffff; /* White animated border */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px; /* Space between loader and text */
+        }
+
+        /* Loading Text Message */
+        .loading-message {
+            color: white;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        /* Keyframes for Spinning Effect */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Prevent scrolling while loading */
+        body.loading {
+            overflow: hidden;
+        }
+    </style>
+
+    <!-- CSS
+    ============================================ -->
+
+<!--===== Vendor CSS (Bootstrap & Icon Font) =====-->
+<link rel="stylesheet" href="/assets/css/plugins/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/plugins/fontawesome.min.css">
+<link rel="stylesheet" href="/assets/css/plugins/default.css">
+
+
+<!--===== Plugins CSS (All Plugins Files) =====-->
+<link rel="stylesheet" href="/assets/css/plugins/animate.min.css">
+<link rel="stylesheet" href="/assets/css/plugins/slick.css">
+<link rel="stylesheet" href="/assets/css/plugins/magnific-popup.css">
+
+<!--====== Main Style CSS ======-->
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/custom_style.css">
+<!-- <link rel="stylesheet" href="/assets/css/style.min.css"> --></head>
+
+<body class="loading">
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <!-- Large Logo -->
+        <img src="/assets/images/logo.png" alt="Logo" class="loading-logo">
+
+        <!-- Loading Message -->
+        <p class="loading-message">Please wait while all graphical elements are being loaded...</p>
+
+        <!-- Small Loader Below Logo -->
+        <div class="loader"></div>
+    </div>
+
+    <!--====== Header Start ======-->
+
+<header class="header-area">
+    <div class="header-top">
+        <div class="container">
+            <div class="header-top-wrapper d-flex flex-wrap justify-content-sm-between">
+                <div class="header-top-left">
+                    <ul class="header-meta">
+                        <li id="datetime"></li>
+                    </ul>
+                </div>
+                <div class="header-top-right">
+                    <div class="header-link">
+                        <a class="login" href="https://ers.tup.edu.ph/aims/students/">ERS Student</a>
+                        <a class="register" href="https://ers.tup.edu.ph/aims/faculty/">ERS Faculty</a>
+                        <a class="register" href="/admin/login">WebAdmin</a>
+                        <!-- <a class="notice" href="/notice.html">Notice</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="navigation" class="navigation navigation-landscape">
+        <img src="/assets/images/tupt_portal_banner_no_logo.png" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="logo-img header-logo">
+                        <a href="/"><img src="/assets/images/logo.png" alt="Logo"></a>
+                    </div>
+                </div>
+                <div class="col-lg-10 position-static banner-text">
+                    <img src="/assets/images/tupt-text.png" alt="" style="width: 80%;">
+                </div>
+                <div class="col-lg-12 position-static main-nav">
+                    <div class="nav-toggle"></div>
+                    <nav class="nav-menus-wrapper">
+                        <ul class="nav-menu">
+                            <li>
+    <a href="/gen-info">About</a>
+    <ul class="nav-dropdown nav-submenu">
+        <li><a href="/gen-info">University Profile</a></li>
+        <li><a href="/mandate">TUP Mandate</a></li>
+        <li><a href="/bor">Board of Regents</a></li>
+        <li><a href="/admin">Administration</a></li>
+<!--        <li><a href="/directory">Directory</a></li>-->
+        <li><a href="/transparency">Transparency Seal</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#">Academics</a>
+    <ul class="nav-dropdown nav-submenu">
+        <li><a href="/progoff">Program Offerings</a></li>
+        <li><a href="/acadcal">Academic Calendar</a></li>
+        <li>
+            <a href="#">Departments</a>
+            <ul class="nav-dropdown nav-submenu">
+                <li><a href="/academics/department/basd">Basic Arts and Sciences Department</a></li>
+                <li><a href="/academics/department/caad">Civil and Allied Department</a></li>
+                <li><a href="/academics/department/eaad">Electrical and Allied Department</a></li>
+                <li><a href="/academics/department/maad">Mechanical and Allied Department</a></li>
+            </ul>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="#">Offices</a>
+    <ul class="nav-dropdown nav-submenu">
+        <li><a href="/offices/do">Directors Office</a></li>
+        <li><a href="/offices/adaa">Assistant Director for Academic Affairs Office</a></li>
+        <li><a href="/offices/adaf">Assistant Director for Admin and Finance Office</a></li><li><a href="/offices/adre">Assistant Director for Research and Extension Office</a></li>
+        <li><a href="/offices/adre">Assistant Director for Research and Extension Office</a></li>
+        <li>
+            <a href="#">Support to Student Offices</a>
+            <ul class="nav-dropdown nav-submenu">
+                <li><a href="/offices/osa">Office of Student Affairs</a></li>
+                <li><a href="/offices/registrar">Registrar's Office</a></li>
+                <li><a href="/offices/guidance">Guidance Office</a></li>
+                <li><a href="/offices/clinic">Health Services Office</a></li>
+                <li><a href="/offices/uitc">University Information Technology Center Office</a></li>
+                <li><a href="/offices/lrc">Learning and Resource Center</a></li>
+            </ul>
+        </li>
+<!--        <li>-->
+<!--            <a href="#">Other Offices</a>-->
+<!--            <ul class="nav-dropdown nav-submenu">-->
+<!--                <li><a href="/offices/hrmo">Human Resource Management Office</a></li>-->
+<!--                <li><a href="/offices/accounting">Accounting Office</a></li>-->
+<!--                <li><a href="/offices/budget">Budget and Finance Office</a></li>-->
+<!--                <li><a href="/office/budget">Planning Office</a></li>-->
+<!--                <li><a href="/offices/procurement">Procurement Office</a></li>-->
+<!--                <li><a href="/offices/supply">Property and Supply Office</a></li>-->
+<!--                <li><a href="/offices/qa">Quality Assurance Office</a></li>-->
+<!--            </ul>-->
+<!--        </li>-->
+    </ul>
+</li>
+<!--<li>-->
+<!--    <a href="#">Student Life</a>-->
+<!--    <ul class="nav-dropdown nav-submenu">-->
+<!---->
+<!--    </ul>-->
+<!--</li>-->
+<li>
+    <a href="#">Procurement</a>
+    <ul class="nav-dropdown nav-submenu">
+        <li><a href="/bids">Bid Opportunities </a></li>
+<!--        <li><a href="/philgeps">Philgeps Posting</a></li>-->
+    </ul>
+</li>
+<li><a href="/careers">Career</a></li>
+<!--<li><a href="/accre">Accreditation</a></li>-->                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--====== Header Ends ======-->
+<!---->
+<!--<div class="toast-container position-fixed bottom-1 end-0 p-3">-->
+<!--    <div id="liveToast" class="toast bg-warning text-dark" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="10000">-->
+<!--        <div class="toast-header bg-warning text-dark">-->
+<!--            <!-- Optional icon or image -->-->
+<!--            <strong class="me-auto">Warning</strong>-->
+<!--            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>-->
+<!--        </div>-->
+<!--        <div class="toast-body">-->
+<!--            This website is still undergoing major development, some parts and functionality might still not work accordingly.-->
+<!--<!--        </div>-->-->
+<!--<!--    </div>-->-->
+<!--</div>-->
+    
+    <!--====== Page Banner Start ======-->
+
+    <section class="page-banner">
+        <div class="page-banner-bg bg_cover" style="background-image: url(/assets/images/page-banner.png);">
+            <div class="container">
+                <div class="banner-content text-center">
+                    <h2 class="title">Program Offerings</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== Page Banner Ends ======-->
+
+    <!--====== Main Content Start ======-->
+    <section class="top-courses-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title mt-40">
+                        <h2 class="title">Program Offerings</h2>
+                        <p>Explore our diverse range of programs designed to equip students with the knowledge and skills needed to excel in their chosen fields</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="courses-menu pt-40 text-center">
+                        <ul class="menu-items">
+                            <li data-filter="*" class="active">All</li>
+                            <li data-filter=".basd">BASD</li>
+                            <li data-filter=".caad">CAAD</li>
+                            <li data-filter=".eaad">EAAD</li>
+                            <li data-filter=".maad">MAAD</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="courses-wrapper">
+                <div class="row grid">
+                    <div class="col-lg-4 col-sm-8 courses-col caad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BSCE"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BSCE.png?updatedAt=1742033266536" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #8C6F50;">
+                                <a href="#" class="category">BSCE</a>
+                                <h4 class="courses-title"><a href="/academics/BSCE">Bachelor of Science in Civil Engineering</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col eaad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BSEE"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BSEE.png?updatedAt=1742033266478" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #1F4A50;">
+                                <a href="#" class="category">BSEE</a>
+                                <h4 class="courses-title"><a href="/academics/BSEE">Bachelor of Science in Electrical Engineering</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col eaad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BSEcE"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BSECE.png?updatedAt=1742033266565" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #163E42;">
+                                <a href="#" class="category">BSEcE</a>
+                                <h4 class="courses-title"><a href="/academics/BSEcE">Bachelor of Science in Electronics Engineering</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col maad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BSME"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BSME.png?updatedAt=1742033267062" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #3A3528;">
+                                <a href="#" class="category">BSME</a>
+                                <h4 class="courses-title"><a href="/academics/BSME">Bachelor of Science in Mechanical Engineering</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col basd">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BTVTEd_ET"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BTVTEDET.png?updatedAt=1742033270891" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #0F162F;">
+                                <a href="#" class="category">BTVTEd-ET</a>
+                                <h4 class="courses-title"><a href="/academics/BTVTEd_ET">Bachelor of Technical-Vocational Teacher Education with specialization in Electrical Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col basd">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BTVTEd_ELXT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BTVTED-ELXT.png?updatedAt=1742033270867" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #2C3E5A;">
+                                <a href="#" class="category">BTVTEd-ELXT</a>
+                                <h4 class="courses-title"><a href="/academics/BTVTEd_ELXT">Bachelor of Technical-Vocational Teacher Education with specialization in Electronics Engineering</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col basd">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BTVTEd_ICT_CH"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BTVTEDICTCH.png?updatedAt=1742033270820" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #28204E;">
+                                <a href="#" class="category">BTVTEd-ICT-CH</a>
+                                <h4 class="courses-title"><a href="/academics/BTVTEd_ICT_CH">Bachelor of Technical-Vocational Teacher Education with specialization in ICT - Computer Hardware Servicing</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col basd">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BTVTEd_ICT_CP"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BTVTED-CP.png?updatedAt=1742033266800" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #1A3B4F;">
+                                <a href="#" class="category">BTVTEd-ICT-CP</a>
+                                <h4 class="courses-title"><a href="/academics/BTVTEd_ICT_CP">Bachelor of Technical-Vocational Teacher Education with specialization in ICT - Computer Programming</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col caad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETCHT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETCHT.png?updatedAt=1742033262027" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #805F3E;">
+                                <a href="#" class="category">BETCHT</a>
+                                <h4 class="courses-title"><a href="/academics/BETCHT">Bachelor of Engineering Technology major in Chemical Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col eaad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BSIT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BSIT.png?updatedAt=1742033267169" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #0E2C30;">
+                                <a href="#" class="category">BSIT</a>
+                                <h4 class="courses-title"><a href="/academics/BSIT">Bachelor of Science in Information Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col eaad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETET"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETET.png?updatedAt=1742033262031" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #2A575C;">
+                                <a href="#" class="category">BETET</a>
+                                <h4 class="courses-title"><a href="/academics/BETET">Bachelor of Engineering Technology major in Electrical Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col eaad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETELXT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETELXT.png?updatedAt=1742033261908" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #10353A;">
+                                <a href="#" class="category">BETELXT</a>
+                                <h4 class="courses-title"><a href="/academics/BETELXT">Bachelor of Engineering Technology major in Electronics Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col maad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETAT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETAT.png?updatedAt=1742033261953" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #2F2C21;">
+                                <a href="#" class="category">BETAT</a>
+                                <h4 class="courses-title"><a href="/academics/BETAT">Bachelor of Engineering Technology major in Automotive Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col maad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETDMT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETDMT.png?updatedAt=1742033262032" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #3E382D;">
+                                <a href="#" class="category">BETDMT</a>
+                                <h4 class="courses-title"><a href="/academics/BETDMT">Bachelor of Engineering Technology major in Dies & Moulds Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col maad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETEMT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETEMT.png?updatedAt=1742033262034" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #2E2A24;">
+                                <a href="#" class="category">BETEMT</a>
+                                <h4 class="courses-title"><a href="/academics/BETEMT">Bachelor of Engineering Technology major in Electromechanical Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col caad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BSES"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BSES.png?updatedAt=1742033267381" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #6F5238;">
+                                <a href="#" class="category">BSES</a>
+                                <h4 class="courses-title"><a href="/academics/BSES">Bachelor of Science in Environmental Science</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col caad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETCT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETCT.png?updatedAt=1742033261942" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #5E4731;">
+                                <a href="#" class="category">BETCT</a>
+                                <h4 class="courses-title"><a href="/academics/BETCT">Bachelor of Engineering Technology major in Civil Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col eaad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETICT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETICT.png?updatedAt=1742033262001" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #1D5258;">
+                                <a href="#" class="category">BETICT</a>
+                                <h4 class="courses-title"><a href="/academics/BETICT">Bachelor of Engineering Technology major in Instrumentation & Controls Technology </a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col eaad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETMECT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETMECT.png?updatedAt=1742033262028" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #25464A;">
+                                <a href="#" class="category">BETMECT</a>
+                                <h4 class="courses-title"><a href="/academics/BETMECT">Bachelor of Engineering Technology major in Mechatronics Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col maad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETHVAC_RT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETHVAC-RT.png?updatedAt=1742033262030" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #403C30;">
+                                <a href="#" class="category">BETHVAC/RT</a>
+                                <h4 class="courses-title"><a href="/academics/BETHVAC_RT">Bachelor of Engineering Technology major in Heating, Ventilation, & Airconditioning / Refrigeration Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col maad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETMT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETMT.png?updatedAt=1742033266504" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #26231B;">
+                                <a href="#" class="category">BETMT</a>
+                                <h4 class="courses-title"><a href="/academics/BETMT">Bachelor of Engineering Technology major in Mechanical Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-8 courses-col maad">
+                        <div class="single-courses-2 mt-30">
+                            <div class="courses-image">
+                                <a href="/academics/BETNDT"><img src="https://ik.imagekit.io/tupt/tupt_portal/programs/BETNDT.png?updatedAt=1742033266446" width="270" height="170" alt="courses"></a>
+                            </div>
+                            <div class="courses-content" style="background-color: #353024;">
+                                <a href="#" class="category">BETNDT</a>
+                                <h4 class="courses-title"><a href="/academics/BETNDT">Bachelor of Engineering Technology major in Non-Destructive Testing Technology</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== Main Content Ends ======-->
+
+
+
+
+    <!--====== Newsletter Start ======-->
+
+<!--<section class="newsletter-area">-->
+<!--    <div class="container">-->
+<!--        <div class="newsletter-wrapper bg_cover wow zoomIn" data-wow-duration="1s" data-wow-delay="0.2s" style="background-image: url(assets/images/newsletter-bg-1.webp);">-->
+<!--            <div class="row align-items-center">-->
+<!--                <div class="col-lg-9">-->
+<!--                    <div class="section-title-2 mt-25">-->
+<!--                        <h2 class="title">Follow Us!</h2>-->
+<!--                        <span class="line"></span>-->
+<!--                        <p>Stay updated on news, events, and campus life by connecting with us on social media.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-3">-->
+<!--                    <div class="newsletter-form mt-30">-->
+<!--                        <form action="https://www.facebook.com/tuptaguigofficial/">-->
+<!--                            <button class="main-btn main-btn-2">Subscribe now</button>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<section class="newsletter-area">
+    <div class="container">
+        <div class="newsletter-wrapper bg_cover wow zoomIn" data-wow-duration="1s" data-wow-delay="0.2s" style="background-image: url(https://ik.imagekit.io/tupt/tupt_portal/generic/newsletter-bg-1.webp?updatedAt=1741956811888);">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="section-title-2 mt-25">
+                        <h2 class="title">Download our Newsletter</h2>
+                        <span class="line"></span>
+                        <p>Stay Informed on Campus News, Events, and Achievements!</p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="newsletter-form mt-30">
+                        <a data-pdf="https://drive.google.com/file/d/1lb_ZXQsQJaWinfv4hOyZRHvPRv6tMqfe/preview" class="main-btn main-btn-2 transparency openModal" href="#">Read now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--====== Newsletter Ends ======-->
+
+<!-- Modal structure -->
+<div id="pdfModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <iframe id="pdfFrame" src="" width="100%" height="600px"></iframe>
+    </div>
+</div>
+
+<script src="/assets/js/modal.js"></script>
+    <!--====== Footer Start ======-->
+
+<section class="footer-area bg_cover" style="background-image: url(/assets/images/footer-image.png);">
+    <div class="footer-widget">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-link mt-45">
+                        <h4 class="footer-title">Online Services</h4>
+                        <ul class="link-list">
+                            <li><a href="https://www.lbp-eservices.com/egps/portal/index.jsp">Landbank E-Payment</a></li>
+                            <li><a href="/#">TUP VMGO</a></li>
+                            <li><a href="https://ers.tup.edu.ph/aims/students/">ERS For Students</a></li>
+                            <li><a href="https://ers.tup.edu.ph/aims/faculty/">ERS For Faculty</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-link mt-45">
+                        <h4 class="footer-title">About GOVPH</h4>
+                        <ul class="link-list">
+                            <li><p>Learn more about the Philippine government, its<br>structure, how government works and the people<br>behind it.<br><br><br></p></li>
+                            <li><a href="https://data.gov.ph/">Open Data Portal</a></li>
+                            <li><a href="https://www.officialgazette.gov.ph/">Official Gazette</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-link mt-45">
+                        <h4 class="footer-title">Government Links</h4>
+                        <ul class="link-list">
+                            <li><a href="https://pco.gov.ph/">Office of the President</a></li>
+                            <li><a href="https://www.ovp.gov.ph/">Office of the Vice President</a></li>
+                            <li><a href="https://legacy.senate.gov.ph/">Senate of the Philippines</a></li>
+                            <li><a href="https://www.congress.gov.ph/">House of Representatives</a></li>
+                            <li><a href="https://sc.judiciary.gov.ph/">Supreme Court</a></li>
+                            <li><a href="https://ca.judiciary.gov.ph/">Court of Appeals</a></li>
+                            <li><a href="https://sb.judiciary.gov.ph/">Sandiganbayan</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-link mt-45">
+                        <h4 class="footer-title">Contact Info</h4>
+                        <ul class="link-list">
+                            <li>
+                                <p>KM14 East Service Road, Western Bicutan, Taguig City</p>
+                            </li>
+                            <li>
+                                <p><a href="/tel:+6328232456">(+632) 8247-5250 to 54</a></p>
+                            </li>
+                            <li>
+                                <p><a href="/mailto://taguig@tup.edu.ph">taguig@tup.edu.ph</a></p>
+                                <p><a href="/#">www..tupt.edu.ph</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="copyright text-start">
+                        <p>&copy; 2024 <span> Technological University of the Philippines - Taguig </span> | All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="copyright text-end">
+                        <p>Developed and Maintained by <a href="/#">UITC</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--====== Footer Ends ======-->
+
+<!--====== BACK TOP TOP PART START ======-->
+
+<a href="/#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!--====== BACK TOP TOP PART ENDS ======-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("loading-screen").style.display = "flex"; // Ensure loader is visible immediately
+        });
+
+        window.onload = function () {
+            document.getElementById("loading-screen").style.display = "none"; // Hide loader after full page load
+            document.body.classList.remove("loading"); // Allow scrolling
+        };
+    </script>
+
+    <!--====== Jquery js ======-->
+<script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/vendor/modernizr-3.7.1.min.js"></script>
+
+<!--====== All Plugins js ======-->
+<script src="/assets/js/plugins/popper.min.js"></script>
+<script src="/assets/js/plugins/bootstrap.min.js"></script>
+<script src="/assets/js/plugins/slick.min.js"></script>
+<script src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+<script src="/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+<script src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+<script src="/assets/js/plugins/wow.min.js"></script>
+<script src="/assets/js/plugins/ajax-contact.js"></script>
+
+
+<!--====== Main Activation  js ======-->
+<script src="/assets/js/main.js"></script>
+
+<!--====== User Defined  js ======-->
+<script src="/assets/js/curr_time.js"></script>
+
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function () {-->
+<!--        var toastTrigger = document.getElementById('liveToast');-->
+<!--        var toast = new bootstrap.Toast(toastTrigger);-->
+<!---->
+<!--        // Show the toast-->
+<!--        toast.show();-->
+<!--    });-->
+<!--</script>-->
+</body>
+
+</html>

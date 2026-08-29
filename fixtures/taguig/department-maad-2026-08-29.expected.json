@@ -1,0 +1,19 @@
+{
+  "byEntity": {
+    "academic_unit": [
+      {
+        "slug": "maad",
+        "name": "Mechanical and Allied Department",
+        "abbreviation": "MAAD",
+        "unit_type": "department",
+        "description": "The Mechanical and Allied Department focuses on developing expertise in mechanical engineering and related technologies. With a strong foundation in engineering principles and specialized training in various technical fields, the department equips students with the skills needed to innovate and excel in industries such as manufacturing, automation, and energy systems.",
+        "head_name": "Dr. June Raymond L. Mariano",
+        "head_title": "Department Head",
+        "emails": [],
+        "website": null,
+        "status": "active"
+      }
+    ]
+  },
+  "warnings": []
+}

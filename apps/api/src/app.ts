@@ -5,13 +5,24 @@ import { requestId } from './middleware/request-id.js';
 import { Problem, problemBody } from './lib/problem.js';
 import { campusRoutes } from './routes/campuses.js';
 import { healthRoutes } from './routes/health.js';
+import { metaRoutes } from './routes/meta.js';
+import { offeringRoutes } from './routes/offerings.js';
+import { programRoutes } from './routes/programs.js';
+import { unitRoutes } from './routes/units.js';
 import { logger } from './lib/logger.js';
 
 export interface AppEnv {
   Variables: { requestId: string };
 }
 
-export const DOCS_BASE = process.env['DOCS_BASE_URL'] ?? 'https://docs.tup-open-api.example';
+/**
+ * Base for the RFC 9457 `type` URIs. docs/13 §8.2: every one must resolve to a real
+ * page — a dead error link is worse than no link. Until the project owns a domain this
+ * points at the repository, where docs/errors/*.md exist; set DOCS_BASE_URL to
+ * `https://docs.<domain>` when there is one.
+ */
+export const DOCS_BASE =
+  process.env['DOCS_BASE_URL'] ?? 'https://github.com/kienserapio/TUP-API/blob/main/docs';
 
 export function createApp() {
   const app = new OpenAPIHono<AppEnv>({
@@ -45,7 +56,13 @@ export function createApp() {
   app.use('/v1/*', cors({ origin: '*', allowMethods: ['GET', 'HEAD', 'OPTIONS'] }));
 
   app.route('/', healthRoutes);
+  app.route('/', metaRoutes);
   app.route('/', campusRoutes);
+  app.route('/', unitRoutes);
+  // programs before offerings: both declare paths under /v1/programs and /v1/offerings
+  // respectively, but the registration order is what the generated spec lists.
+  app.route('/', programRoutes);
+  app.route('/', offeringRoutes);
 
   app.doc31('/openapi.json', {
     openapi: '3.1.0',
@@ -64,6 +81,18 @@ export function createApp() {
     tags: [
       { name: 'meta', description: 'Service health and coverage.' },
       { name: 'campuses', description: 'The four campuses of the TUP system.' },
+      {
+        name: 'units',
+        description:
+          'Colleges, departments, institutes and centres. Always read `unit_type`: ' +
+          'campuses use different vocabularies (ADR-002).',
+      },
+      {
+        name: 'programs',
+        description:
+          'Canonical degrees and the offerings of them at each campus. `/v1/programs` ' +
+          'is the campus-agnostic registry; `/v1/offerings` is what each campus publishes.',
+      },
     ],
   });
 

@@ -20,9 +20,13 @@
   name: Technological University of the Philippines - Cavite
   short_name: TUP Cavite
   kind: satellite
-  # Apex returns 403; all routes must use www. docs/08 §4.1
+  # Apex returned 403 on 2026-08-20; all routes must use www. docs/08 §4.1
   website: https://www.tupcavite.edu.ph
-  website_status: active
+  # 'unavailable' since 2026-08-29: three verification runs an hour apart all timed out
+  # against both hosts. The value means "we could not reach it", which is exactly what
+  # we know — not "it is down for everyone", which we do not. It flips back the moment
+  # a verification run reaches it, and docs/08 §4.1 records what to check first.
+  website_status: unavailable
   address:
     city: Dasmarinas
     province: Cavite
@@ -50,9 +54,17 @@
   short_name: TUP Taguig
   kind: satellite
   website: https://tupt.edu.ph
-  # cPanel-suspended account serving HTTP 200 — NOT 404. A different and more
-  # recoverable state than 'unavailable'. ADR-012, ADR-017, docs/08 §6.
-  website_status: suspended
+  # Was a cPanel-suspended account serving HTTP 200 on 2026-08-20. Re-verified
+  # 2026-08-29: the suspension is lifted and the site serves a real page (55.9 KB,
+  # <title>TUP-T</title>). ADR-012's "on first 200, build the adapter" trigger has
+  # fired — that is M9 work. docs/08 §6.
+  website_status: active
+  # Still 'low', and deliberately so: the site being reachable is not the same as
+  # anything in this row having been read from it. Every fact here still comes from a
+  # sibling site. It becomes 'high' when the Taguig adapter crawls the campus (M9),
+  # not when the host starts answering. docs/08 §6, docs/09 §2.
+  confidence: low
   description: >-
-    Modelled as a first-class campus with no live source. The weekly liveness probe
-    opens an issue when the suspended-account page stops being served.
+    Modelled as a first-class campus. Its site returned a cPanel suspension notice
+    through 2026-08-20 and came back online by 2026-08-29; nothing here has been
+    crawled from it yet, which is what the low confidence records.

@@ -1,0 +1,19 @@
+{
+  "byEntity": {
+    "academic_unit": [
+      {
+        "slug": "basd",
+        "name": "Basic Arts and Sciences Department",
+        "abbreviation": "BASD",
+        "unit_type": "department",
+        "description": "The Basic Arts and Sciences Department plays a vital role in providing foundational knowledge and skills in various disciplines. Beyond offering specialized programs in technical-vocational education, it also serves as a service department, delivering essential courses in Mathematics, Sciences, Arts, and Languages.",
+        "head_name": "Dr. Heherson P. Ramos, LPT",
+        "head_title": "Department Head",
+        "emails": [],
+        "website": null,
+        "status": "active"
+      }
+    ]
+  },
+  "warnings": []
+}

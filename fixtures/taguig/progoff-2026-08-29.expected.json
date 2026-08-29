@@ -1,0 +1,281 @@
+{
+  "byEntity": {
+    "program_offering": [
+      {
+        "source_name": "Bachelor of Science in Civil Engineering",
+        "slug": "bachelor-of-science-in-civil-engineering",
+        "local_name": null,
+        "unit_slug": "caad",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Electrical Engineering",
+        "slug": "bachelor-of-science-in-electrical-engineering",
+        "local_name": null,
+        "unit_slug": "eaad",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Electronics Engineering",
+        "slug": "bachelor-of-science-in-electronics-engineering",
+        "local_name": null,
+        "unit_slug": "eaad",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Mechanical Engineering",
+        "slug": "bachelor-of-science-in-mechanical-engineering",
+        "local_name": null,
+        "unit_slug": "maad",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical-Vocational Teacher Education with specialization in Electrical Technology",
+        "slug": "bachelor-of-technical-vocational-teacher-education-with-specialization-in-electrical-technology",
+        "local_name": null,
+        "unit_slug": "basd",
+        "majors": [
+          "Electrical Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical-Vocational Teacher Education with specialization in Electronics Engineering",
+        "slug": "bachelor-of-technical-vocational-teacher-education-with-specialization-in-electronics-engineering",
+        "local_name": null,
+        "unit_slug": "basd",
+        "majors": [
+          "Electronics Engineering"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical-Vocational Teacher Education with specialization in ICT - Computer Hardware Servicing",
+        "slug": "bachelor-of-technical-vocational-teacher-education-with-specialization-in-ict-computer-hardware-servicing",
+        "local_name": null,
+        "unit_slug": "basd",
+        "majors": [
+          "ICT - Computer Hardware Servicing"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technical-Vocational Teacher Education with specialization in ICT - Computer Programming",
+        "slug": "bachelor-of-technical-vocational-teacher-education-with-specialization-in-ict-computer-programming",
+        "local_name": null,
+        "unit_slug": "basd",
+        "majors": [
+          "ICT - Computer Programming"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Chemical Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-chemical-technology",
+        "local_name": null,
+        "unit_slug": "caad",
+        "majors": [
+          "Chemical Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Information Technology",
+        "slug": "bachelor-of-science-in-information-technology",
+        "local_name": null,
+        "unit_slug": "eaad",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Electrical Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-electrical-technology",
+        "local_name": null,
+        "unit_slug": "eaad",
+        "majors": [
+          "Electrical Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Electronics Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-electronics-technology",
+        "local_name": null,
+        "unit_slug": "eaad",
+        "majors": [
+          "Electronics Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Automotive Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-automotive-technology",
+        "local_name": null,
+        "unit_slug": "maad",
+        "majors": [
+          "Automotive Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Dies & Moulds Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-dies-moulds-technology",
+        "local_name": null,
+        "unit_slug": "maad",
+        "majors": [
+          "Dies & Moulds Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Electromechanical Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-electromechanical-technology",
+        "local_name": null,
+        "unit_slug": "maad",
+        "majors": [
+          "Electromechanical Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Environmental Science",
+        "slug": "bachelor-of-science-in-environmental-science",
+        "local_name": null,
+        "unit_slug": "caad",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Civil Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-civil-technology",
+        "local_name": null,
+        "unit_slug": "caad",
+        "majors": [
+          "Civil Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Instrumentation & Controls Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-instrumentation-controls-technology",
+        "local_name": null,
+        "unit_slug": "eaad",
+        "majors": [
+          "Instrumentation & Controls Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechatronics Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechatronics-technology",
+        "local_name": null,
+        "unit_slug": "eaad",
+        "majors": [
+          "Mechatronics Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Heating, Ventilation, & Airconditioning / Refrigeration Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-heating-ventilation-airconditioning-refrigeration-technology",
+        "local_name": null,
+        "unit_slug": "maad",
+        "majors": [
+          "Heating, Ventilation, & Airconditioning / Refrigeration Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechanical Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechanical-technology",
+        "local_name": null,
+        "unit_slug": "maad",
+        "majors": [
+          "Mechanical Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Non-Destructive Testing Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-non-destructive-testing-technology",
+        "local_name": null,
+        "unit_slug": "maad",
+        "majors": [
+          "Non-Destructive Testing Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      }
+    ]
+  },
+  "warnings": []
+}

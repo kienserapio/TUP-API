@@ -1,0 +1,92 @@
+{
+  "byEntity": {
+    "program_offering": [
+      {
+        "source_name": "Bachelor of Science in Architecture",
+        "slug": "bachelor-of-science-in-architecture",
+        "local_name": null,
+        "unit_slug": "cafa",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Fine Arts",
+        "slug": "bachelor-of-fine-arts",
+        "local_name": null,
+        "unit_slug": "cafa",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor in Graphics Technology major in Architecture Technology",
+        "slug": "bachelor-in-graphics-technology-major-in-architecture-technology",
+        "local_name": null,
+        "unit_slug": "cafa",
+        "majors": [
+          "Architecture Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor in Graphics Technology major in Industrial Design",
+        "slug": "bachelor-in-graphics-technology-major-in-industrial-design",
+        "local_name": null,
+        "unit_slug": "cafa",
+        "majors": [
+          "Industrial Design"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor in Graphics Technology major in Mechanical Drafting Technology",
+        "slug": "bachelor-in-graphics-technology-major-in-mechanical-drafting-technology",
+        "local_name": null,
+        "unit_slug": "cafa",
+        "majors": [
+          "Mechanical Drafting Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master in Architecture major in Construction Technology Management",
+        "slug": "master-in-architecture-major-in-construction-technology-management",
+        "local_name": null,
+        "unit_slug": "cafa",
+        "majors": [
+          "Construction Technology Management"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master in Graphics Technology",
+        "slug": "master-in-graphics-technology",
+        "local_name": null,
+        "unit_slug": "cafa",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      }
+    ]
+  },
+  "warnings": []
+}

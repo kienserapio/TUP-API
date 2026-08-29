@@ -51,6 +51,45 @@ jobs:
       - name: Seed is idempotent
         run: pnpm db:seed
 
+      - name: Ingest every campus from committed fixtures
+        # FETCH_MODE=fixtures, so this reaches no TUP host. The contract tests assert
+        # against real crawled rows (M7) and against three campuses at once (M9), which
+        # have to exist before they run.
+        run: |
+          pnpm ingest --adapter=manila --full
+          pnpm ingest --adapter=visayas --full
+          pnpm ingest --adapter=taguig --full
+
+      - name: Second run is all-unchanged — content-hash gating (E2, M6 checkpoint)
+        run: |
+          for campus in manila visayas taguig; do
+            pnpm ingest --adapter=$campus > /tmp/second-$campus.txt
+            cat /tmp/second-$campus.txt
+            grep -q "fetched=0" /tmp/second-$campus.txt \
+              || (echo "::error::$campus re-fetched instead of hash-gating" && exit 1)
+            grep -q "0 change_events" /tmp/second-$campus.txt \
+              || (echo "::error::$campus wrote change events for unchanged content" && exit 1)
+          done
+
+      - name: Every offering resolves to a canonical program (ADR-003)
+        run: |
+          pnpm ingest:unmatched > /tmp/unmatched.txt
+          cat /tmp/unmatched.txt
+          grep -q "No unmatched offerings" /tmp/unmatched.txt \
+            || echo "::warning::unmatched offerings exist — resolve them in seeds/programs.yaml"
+
+      - name: M9 gate — no migration was needed to add campuses 2 and 3
+        # Every campus lives in the same tables, told apart by campus_slug and
+        # unit_type. A per-campus table or column would show up here as a migration
+        # whose name mentions a campus. docs/04 §2.
+        run: |
+          if ls packages/db/migrations/*.sql | grep -iE "visayas|taguig|cavite|manila"; then
+            echo "::error::a migration is named after a campus — the schema is not campus-agnostic"
+            exit 1
+          fi
+          echo "ok — 8 migrations, none campus-specific"
+
+
       - run: pnpm test
 
       - name: Spec drift gate

@@ -33,7 +33,12 @@ export const campuses = pgTable('campuses', {
   }>(),
   geo: jsonb('geo').$type<{ lat: number; lng: number }>(),
   website: text('website'),
-  /** Taguig is 'suspended': a cPanel-suspended account serving HTTP 200. ADR-017. */
+  /**
+   * ADR-017: 'suspended' is distinct from 'unavailable' — a cPanel suspension notice
+   * served as HTTP 200 is publishable, recoverable information, and Taguig sat in that
+   * state until 2026-08-29. Whatever the value, it is a verified observation about the
+   * host, never a default. docs/08 §6.
+   */
   websiteStatus: sourceStatus('website_status').notNull().default('active'),
   emails: text('emails').array(),
   phones: text('phones').array(),

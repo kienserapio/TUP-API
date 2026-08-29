@@ -1,11 +1,14 @@
 import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
-import { campus, problemDetails } from '@tup/schemas';
+import { campus, collectionLinks, collectionMeta, problemDetails } from '@tup/schemas';
 import { schema } from '@tup/db';
-import { asc, eq, sql as raw } from 'drizzle-orm';
+import { and, asc, eq, sql as raw } from 'drizzle-orm';
 import { db } from '../lib/db.js';
 import { CACHE_REFERENCE, etagFor } from '../lib/etag.js';
 import { notFound } from '../lib/problem.js';
 import { toProvenance } from '../lib/provenance.js';
+import { cacheablePart, collection } from '../lib/collection.js';
+import { decodeCursor, paginate } from '../lib/pagination.js';
+import { after, atLeastConfidence, minConfidenceParam, paginationParams } from '../lib/query.js';
 
 const { campuses, sources } = schema;
 
@@ -16,6 +19,8 @@ const listQuery = z
       .enum(['main', 'satellite', 'extension'])
       .optional()
       .meta({ description: 'Filter by campus kind.' }),
+    min_confidence: minConfidenceParam,
+    ...paginationParams,
   })
   .strict();
 
@@ -65,9 +70,11 @@ const listRoute = createRoute({
   tags: ['campuses'],
   summary: 'List every campus in the TUP system',
   description:
-    'Four campuses, including Taguig, which has no live source. Taguig is modelled as ' +
-    'a first-class campus with `website_status: "suspended"` rather than omitted — ' +
-    'absence would be indistinguishable from "we did not look".',
+    'Four campuses, including Taguig, which nothing has been crawled from yet. Taguig ' +
+    'is modelled as a first-class campus rather than omitted — absence would be ' +
+    'indistinguishable from "we did not look". Read `website_status` for whether a ' +
+    "campus's site is answering, and `provenance.confidence` for whether we have " +
+    'actually read anything from it; they are different questions.',
   request: { query: listQuery },
   responses: {
     200: {
@@ -76,7 +83,8 @@ const listRoute = createRoute({
         'application/json': {
           schema: z.object({
             data: z.array(campus),
-            meta: z.object({ count: z.number().int(), has_more: z.boolean() }),
+            meta: collectionMeta,
+            links: collectionLinks,
           }),
         },
       },
@@ -98,6 +106,10 @@ const getRoute = createRoute({
     params: z.object({
       slug: z.string().meta({ description: 'Campus slug.', example: 'manila' }),
     }),
+    // docs/13 §6: unknown query parameters are rejected on EVERY endpoint, not only
+    // the filterable ones. Silently ignoring a typo'd parameter returns data that
+    // looks filtered and is not — the worst failure for an API whose value is precision.
+    query: z.object({}).strict(),
   },
   responses: {
     200: {
@@ -114,23 +126,40 @@ const getRoute = createRoute({
 
 export const campusRoutes = new OpenAPIHono()
   .openapi(listRoute, async (c) => {
-    const { kind } = c.req.valid('query');
+    const { kind, min_confidence, limit, cursor } = c.req.valid('query');
+    const filters = { kind, min_confidence, limit };
 
     const rows = await db
       .select(selection)
       .from(campuses)
       .innerJoin(sources, eq(campuses.sourceId, sources.id))
-      .where(kind ? eq(campuses.kind, kind) : undefined)
-      .orderBy(asc(campuses.slug));
+      .where(
+        and(
+          kind ? eq(campuses.kind, kind) : undefined,
+          atLeastConfidence(campuses.confidence, min_confidence),
+          after(campuses.slug, cursor ? decodeCursor(cursor, filters) : undefined),
+        ),
+      )
+      .orderBy(asc(campuses.slug))
+      .limit(limit + 1);
 
-    const body = {
-      data: rows.map((r) => present(r as Record<string, unknown>)),
-      meta: { count: rows.length, has_more: false },
-    };
+    const page = paginate(
+      rows.map((r) => present(r as Record<string, unknown>)),
+      limit,
+      (row) => row.slug,
+    );
+    const body = collection({
+      items: page.items,
+      hasMore: page.hasMore,
+      nextKey: page.nextKey,
+      requestUrl: c.req.url,
+      filters,
+    });
 
-    const etag = etagFor(body);
+    const etag = etagFor(cacheablePart(body));
     c.header('ETag', etag);
     c.header('Cache-Control', CACHE_REFERENCE);
+    c.header('Vary', 'Accept-Encoding');
     if (c.req.header('if-none-match') === etag) return c.body(null, 304);
 
     return c.json(body, 200);
@@ -166,6 +195,7 @@ export const campusRoutes = new OpenAPIHono()
     const etag = etagFor(body);
     c.header('ETag', etag);
     c.header('Cache-Control', CACHE_REFERENCE);
+    c.header('Vary', 'Accept-Encoding');
     if (c.req.header('if-none-match') === etag) return c.body(null, 304);
 
     return c.json(body, 200);

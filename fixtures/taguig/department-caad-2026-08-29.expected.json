@@ -1,0 +1,19 @@
+{
+  "byEntity": {
+    "academic_unit": [
+      {
+        "slug": "caad",
+        "name": "Civil and Allied Department",
+        "abbreviation": "CAAD",
+        "unit_type": "department",
+        "description": "The Civil and Allied Department is committed to developing professionals in engineering, technology, and applied sciences. With a strong emphasis on civil engineering, environmental, and chemical technology disciplines, the department prepares students to address industry challenges through innovation, sustainability, and technical proficiency",
+        "head_name": "Dr. Norway J. Pangan",
+        "head_title": "Department Head",
+        "emails": [],
+        "website": null,
+        "status": "active"
+      }
+    ]
+  },
+  "warnings": []
+}

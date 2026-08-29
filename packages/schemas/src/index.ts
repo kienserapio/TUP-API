@@ -8,3 +8,7 @@
 export * from './common.js';
 export * from './campus.js';
 export * from './health.js';
+export * from './meta.js';
+export * from './unit.js';
+export * from './program.js';
+export * from './ingest.js';

@@ -58,13 +58,16 @@ PRD Q4 has this open while [`03-TDD.md §2.5`](./03-TDD.md) hardcodes `vector(15
 
 Note that this requires an **embedding provider API key in ingestion**. [`02-ADRs.md ADR-010`](./02-ADRs.md)'s "no LLM API key or inference cost in the API's operating budget" is true of the API and false of the pipeline.
 
-### D6 — Position on Visayas's AI directives  🟡 blocks the Visayas adapter, Phase 2
+### D6 — Position on Visayas's AI directives  ✅ **decided 2026-08-29**
 
 `tupvisayas.edu.ph` now serves Cloudflare-managed robots directives that Disallow ClaudeBot, GPTBot, CCBot, Google-Extended and others, and declare `Content-Signal: search=yes, ai-train=no, use=reference` as an express reservation of rights — [`08-source-landscape.md §5.1`](./08-source-landscape.md), [`00-errata.md`](./00-errata.md) E11.
 
 `TUPOpenDataBot` is not named and `User-agent: *` is `Allow: /`, so the crawl is permitted. But TUPV has deliberately switched on AI-crawler blocking, and this project's headline feature is an MCP server for AI agents.
 
-**This is a judgment call and it is yours.** The recommended position, which the drafted docs assume:
+**Decided 2026-08-29: the recommended position below, adopted in full.** It is now
+normative in [`07-governance-and-distribution.md §1.3.1`](./07-governance-and-distribution.md)
+and implemented in the fetcher. The rest of this section is kept as the reasoning behind
+the decision.
 
 1. Crawl, since it is permitted, and identify honestly as `TUPOpenDataBot`.
 2. Comply with every signal literally: never train or fine-tune on ingested content, and say so in `LICENSE-DATA`, `llms.txt`, and the consumer guide.
@@ -155,10 +158,13 @@ Item 2 is the one to prioritise. It is consistent with everything else in the tr
 Decisions
   [ ] D1  org name chosen, repo created
   [ ] D2  domain registered to the org
-  [ ] D3  confidence_level ascending — confirmed before migration 001
+  [x] D3  confidence_level ascending — shipped in migration 001, asserted by tests
   [ ] D4  deployment shape and budget agreed
   [ ] D5  embedding model closed (or deferred to Phase 3 knowingly)
-  [ ] D6  position on Visayas AI directives decided and written down
+  [x] D6  position on Visayas AI directives decided 2026-08-29 — crawl and comply
+          literally; written down in 07-governance-and-distribution.md §1.3.1 and in
+          packages/adapters/src/visayas/README.md. Still owed: the same wording in
+          LICENSE-DATA and llms.txt, which do not exist yet.
 
 Accounts
   [ ] A1–A5, A9  GitHub, Supabase (PG 17), Fly, Cloudflare, Sentry, vault
@@ -167,8 +173,10 @@ Accounts
 
 Docs
   [ ] F1–F13 reviewed and signed off
-  [ ] scripts/verify-sources.sh run; output committed to docs/verification/
-  [ ] Any diff against 08-source-landscape.md investigated
+  [x] scripts/verify-sources.sh run 2026-08-29; output in docs/verification/2026-08-29.txt
+  [x] Any diff against 08-source-landscape.md investigated — two findings, both
+      consequential: Taguig's suspension lifted (ADR-012's trigger fired, adapter built)
+      and Cavite unreachable from the verification host. Both recorded in doc 08.
 
 Then start Phase 0.
 ```

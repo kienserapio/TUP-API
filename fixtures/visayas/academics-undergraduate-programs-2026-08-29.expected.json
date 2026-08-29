@@ -1,0 +1,201 @@
+{
+  "byEntity": {
+    "program_offering": [
+      {
+        "source_name": "Bachelor of Science in Mechatronics Engineering",
+        "slug": "bachelor-of-science-in-mechatronics-engineering",
+        "local_name": null,
+        "unit_slug": "coac",
+        "majors": [],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Instrumentation and Control Engineering",
+        "slug": "bachelor-of-instrumentation-and-control-engineering",
+        "local_name": null,
+        "unit_slug": "coac",
+        "majors": [],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology: Major in Mechatronics Engineering Technology",
+        "slug": "bet-major-in-mechatronics-engineering-technology",
+        "local_name": null,
+        "unit_slug": "coac",
+        "majors": [
+          "Mechatronics Engineering Technology"
+        ],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Electronics Engineering",
+        "slug": "bachelor-of-science-in-electronics-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Mechanical Engineering",
+        "slug": "bachelor-of-science-in-mechanical-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Computer Engineering",
+        "slug": "bachelor-of-science-in-computer-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Electrical Engineering",
+        "slug": "bachelor-of-science-in-electrical-engineering",
+        "local_name": null,
+        "unit_slug": "coe",
+        "majors": [],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Chemistry",
+        "slug": "bachelor-of-science-in-chemistry",
+        "local_name": null,
+        "unit_slug": "coet",
+        "majors": [],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology: Major in Automotive Engineering Technology",
+        "slug": "bet-major-in-automotive-engineering-technology",
+        "local_name": null,
+        "unit_slug": "coet",
+        "majors": [
+          "Automotive Engineering Technology"
+        ],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology: Major in Chemical Engineering Technology",
+        "slug": "bet-major-in-chemical-engineering-technology",
+        "local_name": null,
+        "unit_slug": "coet",
+        "majors": [
+          "Chemical Engineering Technology"
+        ],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology: Major in Electrical Engineering Technology",
+        "slug": "bet-major-in-electrical-engineering-technology",
+        "local_name": null,
+        "unit_slug": "coet",
+        "majors": [
+          "Electrical Engineering Technology"
+        ],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology: Major in Electronics Engineering Technology",
+        "slug": "bet-major-in-electronics-engineering-technology",
+        "local_name": null,
+        "unit_slug": "coet",
+        "majors": [
+          "Electronics Engineering Technology"
+        ],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology: Major in Manufacturing Engineering Technology",
+        "slug": "bet-major-in-manufacturing-engineering-technology",
+        "local_name": null,
+        "unit_slug": "coet",
+        "majors": [
+          "Manufacturing Engineering Technology"
+        ],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology: Major in Heating, Ventilating, Air Conditioning Refrigeration Engineering Technology",
+        "slug": "bet-major-in-heating-ventilating-air-conditioning-refrigeration-engineering-technology",
+        "local_name": null,
+        "unit_slug": "coet",
+        "majors": [
+          "Heating, Ventilating, Air Conditioning Refrigeration Engineering Technology"
+        ],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology: Major in Electromechanical Engineering Technology",
+        "slug": "bet-major-in-electromechanical-engineering-technology",
+        "local_name": null,
+        "unit_slug": "coet",
+        "majors": [
+          "Electromechanical Engineering Technology"
+        ],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology: Major in Computer Engineering Technology",
+        "slug": "bet-major-in-computer-engineering-technology",
+        "local_name": null,
+        "unit_slug": "coet",
+        "majors": [
+          "Computer Engineering Technology"
+        ],
+        "years": 4,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      }
+    ]
+  },
+  "warnings": []
+}

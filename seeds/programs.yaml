@@ -109,7 +109,13 @@
   level: baccalaureate
   discipline: business
   typical_years: 4
-  aliases: ['BSEntrep', 'BS Entrepreneurship', 'Entrepreneurship']
+  # Manila's College of Liberal Arts publishes it as "Entrepreneurship Management".
+  # Same degree, campus-local naming — resolved 2026-08-29 from ingest:unmatched.
+  aliases:
+    - 'BSEntrep'
+    - 'BS Entrepreneurship'
+    - 'Entrepreneurship'
+    - 'Bachelor of Science in Entrepreneurship Management'
 
 - slug: btvted
   name: Bachelor of Technical-Vocational Teacher Education
@@ -117,7 +123,26 @@
   discipline: education
   typical_years: 4
   # The exact-term case that motivates the 'simple' text-search config over 'english'.
-  aliases: ['BTVTEd', 'BTVTED', 'Technical-Vocational Teacher Education']
+  # The exact-term case that motivates the 'simple' text-search config over 'english'.
+  # Manila spells it "Technical Vocational Teachers Education" and Taguig
+  # "Technical-Vocational Teacher Education", and Manila says "major in" where Taguig
+  # says "with specialization in". One award, four spellings, twelve offerings.
+  aliases:
+    - "BTVTEd"
+    - "BTVTED"
+    - "Technical-Vocational Teacher Education"
+    - "Bachelor of Technical Vocational Teachers Education major in Animation"
+    - "Bachelor of Technical Vocational Teachers Education major in Beauty Care and Wellness"
+    - "Bachelor of Technical Vocational Teachers Education major in Computer Programming"
+    - "Bachelor of Technical Vocational Teachers Education major in Electrical"
+    - "Bachelor of Technical Vocational Teachers Education major in Electronics"
+    - "Bachelor of Technical Vocational Teachers Education major in Fashion and Garment"
+    - "Bachelor of Technical Vocational Teachers Education major in Food Service Management"
+    - "Bachelor of Technical Vocational Teachers Education major in Heat Ventilation & Air Conditioning"
+    - "Bachelor of Technical-Vocational Teacher Education with specialization in Electrical Technology"
+    - "Bachelor of Technical-Vocational Teacher Education with specialization in Electronics Engineering"
+    - "Bachelor of Technical-Vocational Teacher Education with specialization in ICT - Computer Hardware Servicing"
+    - "Bachelor of Technical-Vocational Teacher Education with specialization in ICT - Computer Programming"
 
 - slug: bet
   name: Bachelor of Engineering Technology
@@ -125,7 +150,45 @@
   discipline: engineering_technology
   typical_years: 4
   # Majors vary sharply by campus and are captured per-offering, not here.
-  aliases: ['BET', 'Engineering Technology']
+  # THE cross-campus case docs/04 §2.4 predicted, resolved 2026-08-29 with three
+  # campuses of evidence rather than one. 36 offerings, three separator spellings:
+  # Manila "major in X option in Y", Visayas ": Major in X", Taguig "major in X".
+  # All alias to this one award; the specialisation lives in program_offerings.majors,
+  # which is what that column is for.
+  aliases:
+    - "BET"
+    - "Engineering Technology"
+    - "Bachelor of Engineering Technology major in Automotive Technology"
+    - "Bachelor of Engineering Technology major in Chemical Technology"
+    - "Bachelor of Engineering Technology major in Civil Technology"
+    - "Bachelor of Engineering Technology major in Computer Engineering Technology"
+    - "Bachelor of Engineering Technology major in Dies & Moulds Technology"
+    - "Bachelor of Engineering Technology major in Electrical Technology"
+    - "Bachelor of Engineering Technology major in Electromechanical Technology"
+    - "Bachelor of Engineering Technology major in Electronics Communications Technology"
+    - "Bachelor of Engineering Technology major in Electronics Technology"
+    - "Bachelor of Engineering Technology major in Heating, Ventilation, & Airconditioning / Refrigeration Technology"
+    - "Bachelor of Engineering Technology major in Instrumentation & Controls Technology"
+    - "Bachelor of Engineering Technology major in Instrumentation and Control Technology"
+    - "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Automotive Technology"
+    - "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Dies and Moulds Technology"
+    - "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Foundry Technology"
+    - "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Heating Ventilating & Air-Conditioning / Refrigeration Technology"
+    - "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Power Plant Technology"
+    - "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Welding Technology"
+    - "Bachelor of Engineering Technology major in Mechanical Technology"
+    - "Bachelor of Engineering Technology major in Mechatronics Technology"
+    - "Bachelor of Engineering Technology major in Non-Destructive Testing Technology"
+    - "Bachelor of Engineering Technology major in Railway Technology"
+    - "Bachelor of Engineering Technology: Major in Automotive Engineering Technology"
+    - "Bachelor of Engineering Technology: Major in Chemical Engineering Technology"
+    - "Bachelor of Engineering Technology: Major in Computer Engineering Technology"
+    - "Bachelor of Engineering Technology: Major in Electrical Engineering Technology"
+    - "Bachelor of Engineering Technology: Major in Electromechanical Engineering Technology"
+    - "Bachelor of Engineering Technology: Major in Electronics Engineering Technology"
+    - "Bachelor of Engineering Technology: Major in Heating, Ventilating, Air Conditioning Refrigeration Engineering Technology"
+    - "Bachelor of Engineering Technology: Major in Manufacturing Engineering Technology"
+    - "Bachelor of Engineering Technology: Major in Mechatronics Engineering Technology"
 
 - slug: bsind-tech
   name: Bachelor of Science in Industrial Technology
@@ -154,3 +217,334 @@
   discipline: engineering
   typical_years: 2
   aliases: ['MEM', 'Master in Engineering Management']
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Resolved from `pnpm ingest:unmatched` after the first Manila crawl, 2026-08-29.
+#
+# Every entry below was read off a TUP Manila college "Courses Offered" page and
+# verified against it by hand. This is the hour of work docs/04 §1.4 says to expect,
+# and it is the reason ADR-003 forbids auto-creating a canonical program from a fuzzy
+# match: several of these are genuinely distinct degrees whose names differ by one
+# word from something already in the registry.
+#
+# WHAT IS DELIBERATELY *NOT* HERE — read this before adding more.
+#
+# 62 Manila offerings remain unmatched, and every one of them is a "…major in X"
+# (or "…option in Y") variant of a base degree: BET, BTVTEd, BTLEd, Graphics
+# Technology, MSCE, MSEE, MSME, MEng, MAIE, MAT, DEd, PhD. They are NOT aliased to
+# their base degrees yet, on purpose:
+#
+#   1. `program_offerings` is UNIQUE (program_id, campus_id). Aliasing Manila's
+#      fourteen BET variants to `bet` collapses fourteen rows into one offering whose
+#      `majors[]` carries the variants. That is the correct end state — it is what the
+#      `majors text[]` column exists for — but it discards thirteen verbatim
+#      `source_name` values in the process.
+#   2. docs/04 §2.4 puts that decision in Phase 2 and says why: the real ambiguity is
+#      cross-campus ("Cavite's BET major in Automotive Engineering Technology vs
+#      Manila's BET variants"). Deciding it now, with one campus of evidence, means
+#      deciding it again later with better evidence.
+#
+# So the boundary is a rule, not a backlog: a standalone degree name is canonical here;
+# a major/option variant stays unmatched until Phase 2. `pnpm ingest:unmatched` lists
+# them, and the pipeline merges `majors[]` correctly the day the aliases are added.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- slug: bas-laboratory-technology
+  name: Bachelor of Applied Science in Laboratory Technology
+  level: baccalaureate
+  discipline: science
+  typical_years: 4
+  aliases: ['BAS Laboratory Technology', 'Bachelor of Applied Science in Laboratory Technology']
+
+- slug: bsenvsci
+  name: Bachelor of Science in Environmental Science
+  level: baccalaureate
+  discipline: science
+  typical_years: 4
+  aliases: ['BSES', 'BS Environmental Science', 'Environmental Science']
+
+- slug: bshm
+  name: Bachelor of Science in Hospitality Management
+  level: baccalaureate
+  discipline: business
+  typical_years: 4
+  aliases: ['BSHM', 'BS Hospitality Management', 'Hospitality Management']
+
+# Manila prints the singular "Information System". The plural is the CHED spelling and
+# is the likelier form on the other campuses, so both are aliases of one canonical row.
+- slug: bsis
+  name: Bachelor of Science in Information Systems
+  level: baccalaureate
+  discipline: computing
+  typical_years: 4
+  aliases:
+    - 'BSIS'
+    - 'BS Information Systems'
+    - 'Bachelor of Science in Information System'
+    - 'Information Systems'
+
+- slug: bt-apparel-and-fashion
+  name: Bachelor of Technology in Apparel and Fashion
+  level: baccalaureate
+  discipline: industrial_technology
+  typical_years: 4
+  aliases: ['Bachelor of Technology in Apparel and Fashion', 'BT Apparel and Fashion']
+
+- slug: bt-nutrition-and-food-technology
+  name: Bachelor of Technology in Nutrition and Food Technology
+  level: baccalaureate
+  discipline: industrial_technology
+  typical_years: 4
+  aliases:
+    - 'Bachelor of Technology in Nutrition and Food Technology'
+    - 'BT Nutrition and Food Technology'
+
+- slug: bt-print-media-technology
+  name: Bachelor of Technology in Print Media Technology
+  level: baccalaureate
+  discipline: industrial_technology
+  typical_years: 4
+  aliases: ['Bachelor of Technology in Print Media Technology', 'BT Print Media Technology']
+
+# ── Graduate and post-graduate ───────────────────────────────────────────────
+
+# Distinct from `mem` (Master in Engineering Management), which is a management degree.
+# Manila's College of Engineering lists both; conflating them would be wrong.
+- slug: meng
+  name: Master of Engineering
+  level: masters
+  discipline: engineering
+  typical_years: 2
+  # Manila embeds the discipline before the major ("…Program in Civil Engineering
+  # major in Structural Engineering Option"). Under the rule below, the discipline is
+  # part of the specialisation, not a separate award.
+  aliases:
+    - "Master of Engineering Program"
+    - "Masters of Engineering Program"
+    - "MEng"
+    - "Masters of Engineering Program in Civil Engineering major in General Civil Engineering Option"
+    - "Masters of Engineering Program in Civil Engineering major in Geotechnical Engineering Option"
+    - "Masters of Engineering Program in Civil Engineering major in Structural Engineering Option"
+    - "Masters of Engineering Program in Electrical Engineering major in Electronics and Communications Engineering Option"
+    - "Masters of Engineering Program in Electrical Engineering major in Instrumentation and Computer Engineering Option"
+    - "Masters of Engineering Program in Electrical Engineering major in Power Engineering Option"
+    - "Masters of Engineering Program in Mechanical Engineering major in Heat Power Option"
+    - "Masters of Engineering Program in Mechanical Engineering major in Manufacturing and Production Option"
+    - "Masters of Engineering Program in Mechanical Engineering major in Refrigeration and Airconditioning Option"
+
+- slug: msee
+  name: Master of Science in Electrical Engineering
+  level: masters
+  discipline: engineering
+  typical_years: 2
+  aliases:
+    - "MSEE"
+    - "MS Electrical Engineering"
+    - "Master of Science in Electrical Engineering major in Communications Engineering"
+    - "Master of Science in Electrical Engineering major in Computer Engineering"
+    - "Master of Science in Electrical Engineering major in Electronics Engineering"
+    - "Master of Science in Electrical Engineering major in Instrumentation and Control Engineering"
+    - "Master of Science in Electrical Engineering major in Power System Engineering"
+
+- slug: mit
+  name: Master of Information Technology
+  level: masters
+  discipline: computing
+  typical_years: 2
+  aliases: ['MIT', 'Master of Information Technology']
+
+- slug: mtech
+  name: Master of Technology
+  level: masters
+  discipline: industrial_technology
+  typical_years: 2
+  aliases: ['Master of Technology', 'MTech']
+
+- slug: mte
+  name: Master of Technology Education
+  level: masters
+  discipline: education
+  typical_years: 2
+  aliases: ['Master of Technology Education', 'MTE']
+
+- slug: mgraphics
+  name: Master in Graphics Technology
+  level: masters
+  discipline: architecture_and_design
+  typical_years: 2
+  aliases: ['Master in Graphics Technology', 'MGT']
+
+- slug: mim
+  name: Master in Management
+  level: masters
+  discipline: business
+  typical_years: 2
+  aliases: ['Master in Management', 'MIM']
+
+- slug: dms
+  name: Doctor of Management Science
+  level: doctorate
+  discipline: business
+  typical_years: 3
+  aliases: ['Doctor of Management Science', 'DMS']
+
+- slug: dtech
+  name: Doctor of Technology
+  level: doctorate
+  discipline: industrial_technology
+  typical_years: 3
+  aliases: ['Doctor of Technology', 'DTech']
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Cross-campus resolution, 2026-08-29 — the Phase 2.4 work, done with the evidence
+# docs/04 §2.4 said to wait for.
+#
+# THE RULE, stated once so the next person applies it the same way:
+#
+#   A canonical program is the AWARD — the degree as CHED would name it. Everything
+#   after "major in", "with specialization in", or "option in" is a specialisation and
+#   belongs in `program_offerings.majors`, not in a separate canonical row. Where a
+#   campus embeds the discipline before the major ("Masters of Engineering Program in
+#   Civil Engineering major in Structural Engineering Option"), the discipline is part
+#   of the specialisation too: it names which flavour of the award, not a new award.
+#
+# WHY, since the alternative is tempting: `program_offerings` is UNIQUE (program_id,
+# campus_id) — one offering per award per campus. Giving each specialisation its own
+# canonical row would let "Bachelor of Engineering Technology" appear 36 times across
+# three campuses as 31 near-duplicate degrees, which is precisely the outcome ADR-003
+# forbids. Under the rule it appears three times, once per campus, each carrying its
+# own majors[] and its own unit — and `GET /v1/programs/bet` answers "where can I
+# study engineering technology" the way a student would ask it.
+#
+# WHAT IT COSTS: an offering that merges keeps the first verbatim `source_name` it was
+# seen under. The other spellings survive in `majors[]`, so nothing is lost, but the
+# per-variant verbatim string is no longer individually addressable. That trade was
+# made deliberately and is the reason this block is commented at this length.
+#
+# Every alias below was read off a live campus page on 2026-08-29 via
+# `pnpm ingest:unmatched`. None was inferred.
+# ─────────────────────────────────────────────────────────────────────────────
+
+- slug: btled
+  name: Bachelor of Technology and Livelihood Education
+  level: baccalaureate
+  discipline: education
+  typical_years: 4
+  # 3 observed spelling(s), manila.
+  aliases:
+    - "Bachelor of Technology and Livelihood Education major in Home Economics"
+    - "Bachelor of Technology and Livelihood Education major in Industrial Arts"
+    - "Bachelor of Technology and Livelihood Education major in Information and Communication Technology"
+
+- slug: bgt
+  name: Bachelor in Graphics Technology
+  level: baccalaureate
+  discipline: architecture_and_design
+  typical_years: 4
+  # 3 observed spelling(s), manila.
+  aliases:
+    - "Bachelor in Graphics Technology major in Architecture Technology"
+    - "Bachelor in Graphics Technology major in Industrial Design"
+    - "Bachelor in Graphics Technology major in Mechanical Drafting Technology"
+
+- slug: bam
+  name: Bachelor of Arts in Management
+  level: baccalaureate
+  discipline: business
+  typical_years: 4
+  # 1 observed spelling(s), manila.
+  aliases:
+    - "Bachelor of Arts in Management major in Industrial Management"
+
+- slug: bsmechatronics
+  name: Bachelor of Science in Mechatronics Engineering
+  level: baccalaureate
+  discipline: engineering
+  typical_years: 4
+  # 1 observed spelling(s), visayas.
+  aliases:
+    - "Bachelor of Science in Mechatronics Engineering"
+
+- slug: bice
+  name: Bachelor of Instrumentation and Control Engineering
+  level: baccalaureate
+  discipline: engineering
+  typical_years: 4
+  # 1 observed spelling(s), visayas.
+  aliases:
+    - "Bachelor of Instrumentation and Control Engineering"
+
+- slug: msce
+  name: Master of Science in Civil Engineering
+  level: masters
+  discipline: engineering
+  typical_years: 2
+  # 3 observed spelling(s), manila.
+  aliases:
+    - "Master of Science in Civil Engineering major in General Civil Engineering"
+    - "Master of Science in Civil Engineering major in Geotechnical Engineering"
+    - "Master of Science in Civil Engineering major in Structural Engineering"
+
+- slug: msme
+  name: Master of Science in Mechanical Engineering
+  level: masters
+  discipline: engineering
+  typical_years: 2
+  # 2 observed spelling(s), manila.
+  aliases:
+    - "Master of Science in Mechanical Engineering major in Energy Engineering"
+    - "Master of Science in Mechanical Engineering major in Production Technology"
+
+- slug: maie
+  name: Master of Arts in Industrial Education
+  level: masters
+  discipline: education
+  typical_years: 2
+  # 4 observed spelling(s), manila.
+  aliases:
+    - "Master of Arts in Industrial Education major in Administration and Supervision"
+    - "Master of Arts in Industrial Education major in Curriculum and Instruction"
+    - "Master of Arts in Industrial Education major in Educational Technology"
+    - "Master of Arts in Industrial Education major in Guidance and Counseling"
+
+- slug: mat
+  name: Master of Arts in Teaching
+  level: masters
+  discipline: education
+  typical_years: 2
+  # 5 observed spelling(s), manila.
+  aliases:
+    - "Master of Arts in Teaching major in Chemistry"
+    - "Master of Arts in Teaching major in General Science"
+    - "Master of Arts in Teaching major in Mathematics"
+    - "Master of Arts in Teaching major in Physics"
+    - "Master of Arts in Teaching major in Technology and Home Economics"
+
+- slug: march
+  name: Master in Architecture
+  level: masters
+  discipline: architecture_and_design
+  typical_years: 2
+  # 1 observed spelling(s), manila.
+  aliases:
+    - "Master in Architecture major in Construction Technology Management"
+
+- slug: ded
+  name: Doctor of Education
+  level: doctorate
+  discipline: education
+  typical_years: 3
+  # 2 observed spelling(s), manila.
+  aliases:
+    - "Doctor of Education major in Career Guidance"
+    - "Doctor of Education major in Industrial Education Management"
+
+- slug: phd-technology-management
+  name: Doctor of Philosophy in Technology Management
+  level: doctorate
+  discipline: management
+  typical_years: 3
+  # 1 observed spelling(s), manila.
+  aliases:
+    - "Doctor of Philosophy major in Technology Management"

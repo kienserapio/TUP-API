@@ -1,9 +1,10 @@
 import { defineConfig } from 'vitest/config';
 
 /**
- * Three projects, matching docs/14-testing-strategy.md §2.
+ * Four projects, matching docs/14-testing-strategy.md §2.
  *
  * unit         fast, no database
+ * fixtures     golden parse tests — half of all test effort (docs/14 §2)
  * integration  real local Postgres — enum ordering and index behaviour are Postgres
  *              behaviours; a mock would assert nothing
  * contract     responses validated against the published openapi.json
@@ -15,6 +16,13 @@ export default defineConfig({
         test: {
           name: 'unit',
           include: ['test/unit/**/*.test.ts'],
+          environment: 'node',
+        },
+      },
+      {
+        test: {
+          name: 'fixtures',
+          include: ['test/fixtures/**/*.test.ts'],
           environment: 'node',
         },
       },

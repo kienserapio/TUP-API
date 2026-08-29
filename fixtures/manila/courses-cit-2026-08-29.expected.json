@@ -1,0 +1,257 @@
+{
+  "byEntity": {
+    "program_offering": [
+      {
+        "source_name": "Bachelor of Science in Food Technology",
+        "slug": "bachelor-of-science-in-food-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Computer Engineering Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-computer-engineering-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Computer Engineering Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Civil Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-civil-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Civil Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Electrical Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-electrical-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Electrical Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Electronics Communications Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-electronics-communications-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Electronics Communications Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Electronics Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-electronics-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Electronics Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Instrumentation and Control Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-instrumentation-and-control-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Instrumentation and Control Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechanical Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechanical-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Mechanical Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechatronics Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechatronics-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Mechatronics Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Railway Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-railway-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Railway Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Automotive Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechanical-engineering-technology-option-in-automotive-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Mechanical Engineering Technology option in Automotive Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Foundry Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechanical-engineering-technology-option-in-foundry-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Mechanical Engineering Technology option in Foundry Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Heating Ventilating & Air-Conditioning / Refrigeration Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechanical-engineering-technology-option-in-heating-ventilating-air-conditioning-refrigeration-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Mechanical Engineering Technology option in Heating Ventilating & Air-Conditioning / Refrigeration Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Power Plant Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechanical-engineering-technology-option-in-power-plant-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Mechanical Engineering Technology option in Power Plant Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Welding Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechanical-engineering-technology-option-in-welding-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Mechanical Engineering Technology option in Welding Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Engineering Technology major in Mechanical Engineering Technology option in Dies and Moulds Technology",
+        "slug": "bachelor-of-engineering-technology-major-in-mechanical-engineering-technology-option-in-dies-and-moulds-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [
+          "Mechanical Engineering Technology option in Dies and Moulds Technology"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technology in Apparel and Fashion",
+        "slug": "bachelor-of-technology-in-apparel-and-fashion",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technology in Nutrition and Food Technology",
+        "slug": "bachelor-of-technology-in-nutrition-and-food-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Technology in Print Media Technology",
+        "slug": "bachelor-of-technology-in-print-media-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Technology",
+        "slug": "master-of-technology",
+        "local_name": null,
+        "unit_slug": "cit",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      }
+    ]
+  },
+  "warnings": []
+}

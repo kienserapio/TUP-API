@@ -1,0 +1,21 @@
+{
+  "byEntity": {
+    "academic_unit": [
+      {
+        "slug": "eaad",
+        "name": "Electrical and Allied Department",
+        "abbreviation": "EAAD",
+        "unit_type": "department",
+        "description": "The Electrical and Allied Department is dedicated to advancing knowledge and skills in electrical, electronics, and allied technologies. With strong flagship programs in engineering and a diverse range of technology-focused disciplines, the department equips students with the technical expertise and innovative mindset needed to thrive in rapidly evolving industries.",
+        "head_name": "Engr. Raymund M. Lozada, PECE",
+        "head_title": "Department Head",
+        "emails": [],
+        "website": null,
+        "status": "active"
+      }
+    ]
+  },
+  "warnings": [
+    "'eaad' nav says \"Electrical and Allied Department\", heading says \"Electrical and AlliedDepartment\"; using the nav"
+  ]
+}

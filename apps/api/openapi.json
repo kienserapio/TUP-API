@@ -40,6 +40,72 @@
           "hours_since_ingest"
         ]
       },
+      "CampusCoverage": {
+        "type": "object",
+        "properties": {
+          "campus": {
+            "type": "string",
+            "example": "manila"
+          },
+          "name": {
+            "type": "string"
+          },
+          "website_status": {
+            "type": "string",
+            "description": "Liveness of the campus site as last verified. Not a claim about the data."
+          },
+          "has_adapter": {
+            "type": "boolean",
+            "description": "False means nothing has ever been crawled for this campus."
+          },
+          "last_ingest_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "counts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "description": "Row count per entity type. Zero is reported, never omitted."
+          },
+          "sources": {
+            "type": "object",
+            "properties": {
+              "total": {
+                "type": "integer"
+              },
+              "active": {
+                "type": "integer"
+              },
+              "blocked": {
+                "type": "integer"
+              },
+              "unavailable": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "total",
+              "active",
+              "blocked",
+              "unavailable"
+            ]
+          }
+        },
+        "required": [
+          "campus",
+          "name",
+          "website_status",
+          "has_adapter",
+          "last_ingest_at",
+          "counts",
+          "sources"
+        ]
+      },
       "Campus": {
         "type": "object",
         "properties": {
@@ -89,7 +155,7 @@
               "blocked",
               "retired"
             ],
-            "description": "Liveness of the campus's public website. 'suspended' means the host serves a suspended-account page (HTTP 200), which differs from 'unavailable'.",
+            "description": "Liveness of the campus's public website, as last verified. 'suspended' means the host serves a suspended-account page (HTTP 200), which differs from 'unavailable'. This describes the site, not the data: a campus can be `active` here and still carry `confidence: low`, meaning nothing has been read from it yet.",
             "example": "active"
           },
           "address": {
@@ -191,6 +257,107 @@
           "method"
         ]
       },
+      "CollectionMeta": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "description": "Number of items in this page."
+          },
+          "has_more": {
+            "type": "boolean",
+            "description": "Authoritative signal for \"keep paginating\". Prefer over links.next."
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this response was assembled. Independent of data age — read provenance.last_verified_at for that. Deliberately excluded from the ETag."
+          },
+          "freshness": {
+            "$ref": "#/components/schemas/Freshness"
+          }
+        },
+        "required": [
+          "count",
+          "has_more",
+          "generated_at",
+          "freshness"
+        ]
+      },
+      "Freshness": {
+        "type": "object",
+        "properties": {
+          "oldest_verified_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "The least recently verified record in this page."
+          },
+          "max_staleness_days": {
+            "type": "integer"
+          },
+          "min_confidence": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              null
+            ],
+            "description": "How much this record should be trusted. Ascending: low < medium < high. Derived from source freshness and entity type, not from parser certainty.",
+            "example": "high"
+          },
+          "counts_by_confidence": {
+            "type": "object",
+            "properties": {
+              "high": {
+                "type": "integer"
+              },
+              "medium": {
+                "type": "integer"
+              },
+              "low": {
+                "type": "integer"
+              }
+            },
+            "required": [
+              "high",
+              "medium",
+              "low"
+            ]
+          }
+        },
+        "required": [
+          "oldest_verified_at",
+          "max_staleness_days",
+          "min_confidence",
+          "counts_by_confidence"
+        ]
+      },
+      "CollectionLinks": {
+        "type": "object",
+        "properties": {
+          "self": {
+            "type": "string"
+          },
+          "next": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Opaque. Do not decode or construct cursors — the format may change."
+          }
+        },
+        "required": [
+          "self",
+          "next"
+        ]
+      },
       "ProblemDetails": {
         "type": "object",
         "properties": {
@@ -225,6 +392,405 @@
           "status",
           "detail"
         ]
+      },
+      "AcademicUnit": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "Permanent public identifier, `{campus}/{slug}`. Never contains a UUID.",
+            "example": "manila/coe"
+          },
+          "campus": {
+            "type": "string",
+            "enum": [
+              "manila",
+              "cavite",
+              "visayas",
+              "taguig"
+            ],
+            "description": "Campus identifier.",
+            "example": "manila"
+          },
+          "slug": {
+            "type": "string",
+            "example": "coe"
+          },
+          "name": {
+            "type": "string",
+            "example": "College of Engineering"
+          },
+          "abbreviation": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unit_type": {
+            "type": "string",
+            "enum": [
+              "college",
+              "department",
+              "institute",
+              "center",
+              "program_group"
+            ],
+            "description": "Organisational vocabulary of this unit. Campuses differ: Manila and Visayas use colleges, Cavite uses departments. Always read this field; never assume \"college\".",
+            "example": "college"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "head_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "head_title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Official addresses only. Never `null`."
+          },
+          "website": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "'active', or 'unknown'/'removed' once the source stopped listing it.",
+            "example": "active"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          }
+        },
+        "required": [
+          "ref",
+          "campus",
+          "slug",
+          "name",
+          "abbreviation",
+          "unit_type",
+          "description",
+          "head_name",
+          "head_title",
+          "emails",
+          "website",
+          "status",
+          "provenance"
+        ]
+      },
+      "Program": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "example": "bsce"
+          },
+          "slug": {
+            "type": "string",
+            "example": "bsce"
+          },
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "example": "Bachelor of Science in Civil Engineering"
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Source name variants the matching chain accepts. Never `null`."
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "certificate",
+              "diploma",
+              "associate",
+              "baccalaureate",
+              "masters",
+              "doctorate",
+              "post_baccalaureate"
+            ],
+            "example": "baccalaureate"
+          },
+          "discipline": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "typical_years": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          }
+        },
+        "required": [
+          "ref",
+          "slug",
+          "code",
+          "name",
+          "aliases",
+          "level",
+          "discipline",
+          "description",
+          "typical_years",
+          "provenance"
+        ]
+      },
+      "ProgramWithOfferings": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "example": "bsce"
+          },
+          "slug": {
+            "type": "string",
+            "example": "bsce"
+          },
+          "code": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "example": "Bachelor of Science in Civil Engineering"
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Source name variants the matching chain accepts. Never `null`."
+          },
+          "level": {
+            "type": "string",
+            "enum": [
+              "certificate",
+              "diploma",
+              "associate",
+              "baccalaureate",
+              "masters",
+              "doctorate",
+              "post_baccalaureate"
+            ],
+            "example": "baccalaureate"
+          },
+          "discipline": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "typical_years": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          },
+          "offerings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProgramOffering"
+            }
+          }
+        },
+        "required": [
+          "ref",
+          "slug",
+          "code",
+          "name",
+          "aliases",
+          "level",
+          "discipline",
+          "description",
+          "typical_years",
+          "provenance",
+          "offerings"
+        ]
+      },
+      "ProgramOffering": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "example": "manila/bsce"
+          },
+          "campus": {
+            "type": "string",
+            "enum": [
+              "manila",
+              "cavite",
+              "visayas",
+              "taguig"
+            ],
+            "description": "Campus identifier.",
+            "example": "manila"
+          },
+          "slug": {
+            "type": "string",
+            "example": "bsce"
+          },
+          "program": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical program slug, or null when the source name has not been resolved into the registry. Never auto-created from a fuzzy match (ADR-003).",
+            "example": "bsce"
+          },
+          "source_name": {
+            "type": "string",
+            "description": "Verbatim, as the campus publishes it, before canonicalisation.",
+            "example": "Bachelor of Science in Civil Engineering"
+          },
+          "local_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unit": {
+            "$ref": "#/components/schemas/OfferingUnit"
+          },
+          "majors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Never `null`."
+          },
+          "years": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "suspended",
+              "phased_out",
+              "unknown",
+              "removed"
+            ],
+            "example": "active"
+          },
+          "curriculum_url": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "accreditation": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": {}
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          }
+        },
+        "required": [
+          "ref",
+          "campus",
+          "slug",
+          "program",
+          "source_name",
+          "local_name",
+          "unit",
+          "majors",
+          "years",
+          "status",
+          "curriculum_url",
+          "accreditation",
+          "provenance"
+        ]
+      },
+      "OfferingUnit": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "example": "manila/coe"
+          },
+          "slug": {
+            "type": "string",
+            "example": "coe"
+          },
+          "name": {
+            "type": "string",
+            "example": "College of Engineering"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "college",
+              "department",
+              "institute",
+              "center",
+              "program_group"
+            ],
+            "description": "Organisational vocabulary of this unit. Campuses differ: Manila and Visayas use colleges, Cavite uses departments. Always read this field; never assume \"college\".",
+            "example": "college"
+          }
+        },
+        "required": [
+          "ref",
+          "slug",
+          "name",
+          "type"
+        ]
       }
     },
     "parameters": {}
@@ -236,7 +802,7 @@
           "meta"
         ],
         "summary": "Liveness and ingestion freshness",
-        "description": "Reports whether the API is serving and how long since ingestion last succeeded. `hours_since_ingest` is public on purpose: the API reports its own staleness rather than asking anyone to take freshness on faith.",
+        "description": "Reports whether the API is serving and how long since ingestion last succeeded. `hours_since_ingest` is public on purpose: the API reports its own staleness rather than asking anyone to take freshness on faith. `status` is `degraded` when the database is unreachable or ingestion has not succeeded in 36 hours.",
         "responses": {
           "200": {
             "description": "Service is reachable.",
@@ -251,13 +817,61 @@
         }
       }
     },
+    "/v1/meta/coverage": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "What this API actually holds, per campus",
+        "description": "Entity counts for every campus, including the campuses with nothing. There is deliberately **no system-wide total** (ADR-012): an aggregate reads as coverage while hiding that one campus contributes none of it, which is the fact a student at that campus most needs. A campus with no adapter reports zeros and `has_adapter: false` rather than being omitted — absence would be indistinguishable from \"we did not look\".",
+        "responses": {
+          "200": {
+            "description": "Per-campus coverage.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "generated_at": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "by_campus": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/CampusCoverage"
+                          }
+                        }
+                      },
+                      "required": [
+                        "generated_at",
+                        "by_campus"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified."
+          }
+        }
+      }
+    },
     "/v1/campuses": {
       "get": {
         "tags": [
           "campuses"
         ],
         "summary": "List every campus in the TUP system",
-        "description": "Four campuses, including Taguig, which has no live source. Taguig is modelled as a first-class campus with `website_status: \"suspended\"` rather than omitted — absence would be indistinguishable from \"we did not look\".",
+        "description": "Four campuses, including Taguig, which nothing has been crawled from yet. Taguig is modelled as a first-class campus rather than omitted — absence would be indistinguishable from \"we did not look\". Read `website_status` for whether a campus's site is answering, and `provenance.confidence` for whether we have actually read anything from it; they are different questions.",
         "parameters": [
           {
             "schema": {
@@ -272,6 +886,46 @@
             "required": false,
             "description": "Filter by campus kind.",
             "name": "kind",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+              "example": "medium"
+            },
+            "required": false,
+            "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+            "name": "min_confidence",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "description": "Page size. Default 20, maximum 100; above that is a 400.",
+              "example": 20
+            },
+            "required": false,
+            "description": "Page size. Default 20, maximum 100; above that is a 400.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump."
+            },
+            "required": false,
+            "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump.",
+            "name": "cursor",
             "in": "query"
           }
         ],
@@ -290,24 +944,16 @@
                       }
                     },
                     "meta": {
-                      "type": "object",
-                      "properties": {
-                        "count": {
-                          "type": "integer"
-                        },
-                        "has_more": {
-                          "type": "boolean"
-                        }
-                      },
-                      "required": [
-                        "count",
-                        "has_more"
-                      ]
+                      "$ref": "#/components/schemas/CollectionMeta"
+                    },
+                    "links": {
+                      "$ref": "#/components/schemas/CollectionLinks"
                     }
                   },
                   "required": [
                     "data",
-                    "meta"
+                    "meta",
+                    "links"
                   ]
                 }
               }
@@ -372,6 +1018,792 @@
           },
           "404": {
             "description": "No campus with that slug. Includes trigram-similar suggestions.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/units": {
+      "get": {
+        "tags": [
+          "units"
+        ],
+        "summary": "List academic units across the TUP system",
+        "description": "Colleges, departments, institutes and centres. **Always read `unit_type`** — Manila and Visayas are organised into colleges, Cavite into departments, and an integration that assumes \"college\" is wrong for a third of the system (ADR-002).",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "manila",
+                "cavite",
+                "visayas",
+                "taguig"
+              ],
+              "description": "Restrict to one campus. Validated against the four known slugs.",
+              "example": "manila"
+            },
+            "required": false,
+            "description": "Restrict to one campus. Validated against the four known slugs.",
+            "name": "campus",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "college",
+                "department",
+                "institute",
+                "center",
+                "program_group"
+              ],
+              "description": "Filter by organisational vocabulary. See ADR-002."
+            },
+            "required": false,
+            "description": "Filter by organisational vocabulary. See ADR-002.",
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+              "example": "medium"
+            },
+            "required": false,
+            "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+            "name": "min_confidence",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "description": "Page size. Default 20, maximum 100; above that is a 400.",
+              "example": 20
+            },
+            "required": false,
+            "description": "Page size. Default 20, maximum 100; above that is a 400.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump."
+            },
+            "required": false,
+            "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump.",
+            "name": "cursor",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of academic units.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AcademicUnit"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/CollectionMeta"
+                    },
+                    "links": {
+                      "$ref": "#/components/schemas/CollectionLinks"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta",
+                    "links"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified — the If-None-Match ETag still matches."
+          },
+          "400": {
+            "description": "Unknown parameter, limit above 100, or a cursor from a different query.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/campuses/{campus}/units": {
+      "get": {
+        "tags": [
+          "units"
+        ],
+        "summary": "List the academic units of one campus",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "manila",
+                "cavite",
+                "visayas",
+                "taguig"
+              ]
+            },
+            "required": true,
+            "name": "campus",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "college",
+                "department",
+                "institute",
+                "center",
+                "program_group"
+              ]
+            },
+            "required": false,
+            "name": "type",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+              "example": "medium"
+            },
+            "required": false,
+            "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+            "name": "min_confidence",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "description": "Page size. Default 20, maximum 100; above that is a 400.",
+              "example": 20
+            },
+            "required": false,
+            "description": "Page size. Default 20, maximum 100; above that is a 400.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump."
+            },
+            "required": false,
+            "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump.",
+            "name": "cursor",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The campus's academic units.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/AcademicUnit"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/CollectionMeta"
+                    },
+                    "links": {
+                      "$ref": "#/components/schemas/CollectionLinks"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta",
+                    "links"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified."
+          },
+          "400": {
+            "description": "Unknown parameter, unknown campus, or a mismatched cursor.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/units/{campus}/{unit}": {
+      "get": {
+        "tags": [
+          "units"
+        ],
+        "summary": "Get one academic unit",
+        "description": "Unit slugs are only unique within a campus — `coe` exists at both Manila and Visayas — so the path carries the campus (docs/13 §2.2).",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "manila"
+            },
+            "required": true,
+            "name": "campus",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "coe"
+            },
+            "required": true,
+            "name": "unit",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The academic unit.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AcademicUnit"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified."
+          },
+          "404": {
+            "description": "No such unit. Includes trigram-similar suggestions.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/programs": {
+      "get": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "List canonical degree programs",
+        "description": "The campus-agnostic degree registry (ADR-003). `campus`, `unit` and `status` are filters over the *offerings* of each program — a program is not owned by a campus, which is why there is no `/v1/campuses/{campus}/programs` (docs/13 §2.3).",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "manila",
+                "cavite",
+                "visayas",
+                "taguig"
+              ],
+              "description": "Restrict to one campus. Validated against the four known slugs.",
+              "example": "manila"
+            },
+            "required": false,
+            "description": "Restrict to one campus. Validated against the four known slugs.",
+            "name": "campus",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "certificate",
+                "diploma",
+                "associate",
+                "baccalaureate",
+                "masters",
+                "doctorate",
+                "post_baccalaureate"
+              ]
+            },
+            "required": false,
+            "name": "level",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Unit ref, e.g. `manila/coe`. Matches programs offered by that unit.",
+              "example": "manila/coe"
+            },
+            "required": false,
+            "description": "Unit ref, e.g. `manila/coe`. Matches programs offered by that unit.",
+            "name": "unit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "engineering"
+            },
+            "required": false,
+            "name": "discipline",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "active",
+                "suspended",
+                "phased_out",
+                "unknown",
+                "removed"
+              ],
+              "description": "Status of the offering used to match `campus`/`unit`."
+            },
+            "required": false,
+            "description": "Status of the offering used to match `campus`/`unit`.",
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "Case-insensitive substring of the program name.",
+              "example": "civil"
+            },
+            "required": false,
+            "description": "Case-insensitive substring of the program name.",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+              "example": "medium"
+            },
+            "required": false,
+            "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+            "name": "min_confidence",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "description": "Page size. Default 20, maximum 100; above that is a 400.",
+              "example": 20
+            },
+            "required": false,
+            "description": "Page size. Default 20, maximum 100; above that is a 400.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump."
+            },
+            "required": false,
+            "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump.",
+            "name": "cursor",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of canonical programs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Program"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/CollectionMeta"
+                    },
+                    "links": {
+                      "$ref": "#/components/schemas/CollectionLinks"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta",
+                    "links"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified."
+          },
+          "400": {
+            "description": "Unknown parameter, limit above 100, or a mismatched cursor.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/programs/{slug}": {
+      "get": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "Get one degree and every campus that teaches it",
+        "description": "The endpoint the project exists for: one canonical degree with its `offerings[]` across campuses. Note that `unit.type` differs per campus — Manila and Visayas teach through colleges, Cavite through departments (ADR-002).",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "bsce"
+            },
+            "required": true,
+            "name": "slug",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "manila",
+                "cavite",
+                "visayas",
+                "taguig"
+              ],
+              "description": "Restrict to one campus. Validated against the four known slugs.",
+              "example": "manila"
+            },
+            "required": false,
+            "description": "Restrict to one campus. Validated against the four known slugs.",
+            "name": "campus",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The degree and its offerings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ProgramWithOfferings"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified."
+          },
+          "404": {
+            "description": "No program with that slug. Includes trigram-similar suggestions.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/offerings": {
+      "get": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "List degrees as each campus actually publishes them",
+        "description": "One row per degree per campus, carrying the verbatim `source_name`. This is the only view that includes offerings whose source name has not yet been resolved into the canonical registry (`program: null`) — they are real degrees a campus teaches, and hiding them until a human has classified them would misrepresent the catalogue. Filter them with `program=unmatched`.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "manila",
+                "cavite",
+                "visayas",
+                "taguig"
+              ],
+              "description": "Restrict to one campus. Validated against the four known slugs.",
+              "example": "manila"
+            },
+            "required": false,
+            "description": "Restrict to one campus. Validated against the four known slugs.",
+            "name": "campus",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Unit ref, e.g. `manila/coe`."
+            },
+            "required": false,
+            "description": "Unit ref, e.g. `manila/coe`.",
+            "name": "unit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Canonical program slug. Use `unmatched` for offerings not yet resolved.",
+              "example": "bsce"
+            },
+            "required": false,
+            "description": "Canonical program slug. Use `unmatched` for offerings not yet resolved.",
+            "name": "program",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "active",
+                "suspended",
+                "phased_out",
+                "unknown",
+                "removed"
+              ]
+            },
+            "required": false,
+            "name": "status",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200,
+              "description": "Case-insensitive substring of the verbatim source name."
+            },
+            "required": false,
+            "description": "Case-insensitive substring of the verbatim source name.",
+            "name": "q",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ],
+              "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+              "example": "medium"
+            },
+            "required": false,
+            "description": "Inclusive lower bound: `confidence >= value`. Default is no filter — the API returns everything and labels it, because hiding low-confidence rows leaves a consumer unable to tell \"none exist\" from \"none we vouch for\".",
+            "name": "min_confidence",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20,
+              "description": "Page size. Default 20, maximum 100; above that is a 400.",
+              "example": 20
+            },
+            "required": false,
+            "description": "Page size. Default 20, maximum 100; above that is a 400.",
+            "name": "limit",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump."
+            },
+            "required": false,
+            "description": "Opaque continuation token from links.next. Do not decode or construct one — the format may change without a version bump.",
+            "name": "cursor",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of offerings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ProgramOffering"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/CollectionMeta"
+                    },
+                    "links": {
+                      "$ref": "#/components/schemas/CollectionLinks"
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta",
+                    "links"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified."
+          },
+          "400": {
+            "description": "Unknown parameter, limit above 100, or a mismatched cursor.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/offerings/{campus}/{program}": {
+      "get": {
+        "tags": [
+          "programs"
+        ],
+        "summary": "Get one degree as taught at one campus",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "manila"
+            },
+            "required": true,
+            "name": "campus",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Offering slug — the canonical program slug where one is matched.",
+              "example": "bsce"
+            },
+            "required": true,
+            "description": "Offering slug — the canonical program slug where one is matched.",
+            "name": "program",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The offering.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ProgramOffering"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified."
+          },
+          "404": {
+            "description": "No such offering. Includes trigram-similar suggestions.",
             "content": {
               "application/problem+json": {
                 "schema": {

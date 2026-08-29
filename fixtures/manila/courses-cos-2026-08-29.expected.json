@@ -1,0 +1,125 @@
+{
+  "byEntity": {
+    "program_offering": [
+      {
+        "source_name": "Bachelor of Applied Science in Laboratory Technology",
+        "slug": "bachelor-of-applied-science-in-laboratory-technology",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Computer Science",
+        "slug": "bachelor-of-science-in-computer-science",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Environmental Science",
+        "slug": "bachelor-of-science-in-environmental-science",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Information System",
+        "slug": "bachelor-of-science-in-information-system",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Information Technology",
+        "slug": "bachelor-of-science-in-information-technology",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Arts in Teaching major in Physics",
+        "slug": "master-of-arts-in-teaching-major-in-physics",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [
+          "Physics"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Arts in Teaching major in Mathematics",
+        "slug": "master-of-arts-in-teaching-major-in-mathematics",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [
+          "Mathematics"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Arts in Teaching major in General Science",
+        "slug": "master-of-arts-in-teaching-major-in-general-science",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [
+          "General Science"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Arts in Teaching major in Chemistry",
+        "slug": "master-of-arts-in-teaching-major-in-chemistry",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [
+          "Chemistry"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master of Information Technology",
+        "slug": "master-of-information-technology",
+        "local_name": null,
+        "unit_slug": "cos",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      }
+    ]
+  },
+  "warnings": []
+}

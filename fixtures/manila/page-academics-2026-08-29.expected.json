@@ -1,0 +1,79 @@
+{
+  "byEntity": {
+    "academic_unit": [
+      {
+        "slug": "cie",
+        "name": "College of Industrial Education",
+        "abbreviation": "CIE",
+        "unit_type": "college",
+        "description": "The College of Industrial Education (CIE) commits itself to develop highly competent teachers/trainors, leaders, managers, and innovators in industrial and technology education and training, as well as industry through responsive and relevant programs and proactive human resources in an environment of change.",
+        "head_name": null,
+        "head_title": null,
+        "emails": [],
+        "website": null,
+        "status": "active"
+      },
+      {
+        "slug": "coe",
+        "name": "College of Engineering",
+        "abbreviation": "COE",
+        "unit_type": "college",
+        "description": "The College of Engineering (COE) is a recipient of Center of Development (COD) status from the Commission on Higher Education (CHED).",
+        "head_name": null,
+        "head_title": null,
+        "emails": [],
+        "website": null,
+        "status": "active"
+      },
+      {
+        "slug": "cla",
+        "name": "College of Liberal Arts",
+        "abbreviation": "CLA",
+        "unit_type": "college",
+        "description": "The College of Liberal Arts(CLA) offers various management courses in undergraduate and graduate degrees.",
+        "head_name": null,
+        "head_title": null,
+        "emails": [],
+        "website": null,
+        "status": "active"
+      },
+      {
+        "slug": "cos",
+        "name": "College of Science",
+        "abbreviation": "COS",
+        "unit_type": "college",
+        "description": "The College of Science (COS) offers graduate and undergraduate programs in Mathematics, Chemistry, Physics, General Science, and Computer Science.",
+        "head_name": null,
+        "head_title": null,
+        "emails": [],
+        "website": null,
+        "status": "active"
+      },
+      {
+        "slug": "cafa",
+        "name": "College of Architecture and Fine Arts",
+        "abbreviation": "CAFA",
+        "unit_type": "college",
+        "description": "The College of Architecture and Fine Arts (CAFA) has been a consistent contributor in the University's achievements and recognition in various art competitions both local and abroad.",
+        "head_name": null,
+        "head_title": null,
+        "emails": [],
+        "website": null,
+        "status": "active"
+      },
+      {
+        "slug": "cit",
+        "name": "College of Industrial Technology",
+        "abbreviation": "CIT",
+        "unit_type": "college",
+        "description": "The College of Industrial Technology (CIT) is the center of the industrial technology education of the University and is composed of eight departments namely, the Basic Industrial Technology, the Civil Engineering Technology, the Electrical Engineering Technology, the Electronics Engineering Technology, the Food and Apparel Technology, the Graphic Arts and Printing Technology, the Mechanical Engineering Technology and the Power Plant Engineering Technology.",
+        "head_name": null,
+        "head_title": null,
+        "emails": [],
+        "website": null,
+        "status": "active"
+      }
+    ]
+  },
+  "warnings": []
+}

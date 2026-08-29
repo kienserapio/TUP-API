@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "file": "department-basd-2026-08-29.html",
+      "url": "https://tupt.edu.ph/academics/department/basd",
+      "collected_at": "2026-08-29T13:57:31.090Z",
+      "collected_by": "kien",
+      "sha256": "a40d06397f829df3a585c5852c97d97ca54a6d6ae707a5815b2b73f944980832",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "department page"
+    },
+    {
+      "file": "department-caad-2026-08-29.html",
+      "url": "https://tupt.edu.ph/academics/department/caad",
+      "collected_at": "2026-08-29T13:58:31.701Z",
+      "collected_by": "kien",
+      "sha256": "3924b62deed7b3f810ac47e50316ae9ae61c49945b4c9e19c23fb9b347bb0db0",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "department page"
+    },
+    {
+      "file": "department-eaad-2026-08-29.html",
+      "url": "https://tupt.edu.ph/academics/department/eaad",
+      "collected_at": "2026-08-29T13:58:40.023Z",
+      "collected_by": "kien",
+      "sha256": "3ae2099673dbe624a9e231d722282f395aaffb9612306849491331f45cb2308c",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "department page"
+    },
+    {
+      "file": "department-maad-2026-08-29.html",
+      "url": "https://tupt.edu.ph/academics/department/maad",
+      "collected_at": "2026-08-29T13:58:49.837Z",
+      "collected_by": "kien",
+      "sha256": "09093d8e81bb9e2c754d7ac535e081260eeab5850d8ef77ace920690893105e7",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "department page"
+    },
+    {
+      "file": "progoff-2026-08-29.html",
+      "url": "https://tupt.edu.ph/progoff",
+      "collected_at": "2026-08-29T13:57:24.236Z",
+      "collected_by": "kien",
+      "sha256": "d8a3e1546d8365f50ddc6d6b62460a731b8b6e5bec2b3bed4c3828367fd60c4e",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "program offerings"
+    }
+  ]
+}

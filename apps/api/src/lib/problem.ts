@@ -43,7 +43,8 @@ export class Problem extends HTTPException {
 
 export function problemBody(c: Context, init: ProblemInit, docsBase: string) {
   return {
-    type: `${docsBase}/errors/${init.type}`,
+    // `.md` so the URI resolves on GitHub today. Drops away behind a docs domain.
+    type: `${docsBase}/errors/${init.type}.md`,
     title: init.title,
     status: STATUS_BY_TYPE[init.type],
     detail: init.detail,

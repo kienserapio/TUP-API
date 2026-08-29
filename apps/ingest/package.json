@@ -1,2 +1,22 @@
-{ "name": "@tup/ingest", "version": "0.0.0", "private": true, "type": "module",
-  "scripts": { "typecheck": "tsc --noEmit" } }
+{
+  "name": "@tup/ingest",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "capture": "tsx src/cli/capture.ts",
+    "ingest": "tsx src/cli/ingest.ts",
+    "unmatched": "tsx src/cli/unmatched.ts",
+    "decay": "tsx src/cli/decay.ts",
+    "typecheck": "tsc --noEmit",
+    "replay": "tsx src/cli/replay.ts"
+  },
+  "dependencies": {
+    "@tup/adapters": "workspace:*",
+    "@tup/core": "workspace:*",
+    "@tup/db": "workspace:*",
+    "@tup/schemas": "workspace:*",
+    "drizzle-orm": "^0.45.2",
+    "postgres": "^3.4.9"
+  }
+}

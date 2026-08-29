@@ -1,8 +1,20 @@
 # 08 — Source Landscape
 
-**Last verified:** 2026-08-20
-**Verified by:** pre-build review, `scripts/verify-sources.sh`
+**Last verified:** 2026-08-29 (`docs/verification/2026-08-29.txt`)
+**Verified by:** pre-build review 2026-08-20, re-verified 2026-08-29 by `scripts/verify-sources.sh`
 **Re-verify:** before each phase begins, and monthly thereafter
+
+> [!IMPORTANT]
+> **Two facts changed between 2026-08-20 and 2026-08-29, and both are consequential.**
+>
+> 1. **Taguig is no longer suspended — the site is live.** `https://tupt.edu.ph/` returns
+>    HTTP 200 with 55,922 bytes and the title `TUP-T`; there is no `suspendedpage.cgi`
+>    redirect and no suspension text. Under the corrected E13 predicate this is *live*.
+>    ADR-012's trigger has fired: **build the Taguig adapter** (M9). §6 is updated below.
+> 2. **Cavite is down.** Both `tupcavite.edu.ph` and `www.tupcavite.edu.ph` time out
+>    after 20–25 s. Confirmed from **two independent networks** on 2026-08-29, which is
+>    what upgrades this from "unreachable from here" to a fact about the site. §4.1 has
+>    the detail and what to do about it.
 
 This document is the single authoritative record of what each source host actually does. It exists because the v2.0 doc set encoded host facts inline across five documents, and **several of them had drifted within a day of being written** (see [`00-errata.md`](./00-errata.md) E5, E10, E11, E12, E13).
 
@@ -21,9 +33,9 @@ Rules:
 | Campus | Canonical origin | Apex | `www` | Notes |
 |---|---|---|---|---|
 | Manila | `https://tup.edu.ph` | **200** | **intermittent TLS failure** | Use apex. `www` returned `SSL_ERROR_SYSCALL` on one run and 200 on the next. |
-| Cavite | `https://www.tupcavite.edu.ph` | **403** | **200** | Use `www`. Apex serves a static nginx 403 page dated 2021-04-29. |
+| Cavite | `https://www.tupcavite.edu.ph` | **timeout** (2026-08-29) | **timeout** (2026-08-29) | Was 403 / 200 on 2026-08-20. Use `www`. See §4.1. |
 | Visayas | `https://tupvisayas.edu.ph` | **200** | not tested | Behind Cloudflare. |
-| Taguig | `https://tupt.edu.ph` | 200 → suspended notice | — | Account suspended, see §5. |
+| Taguig | `https://tupt.edu.ph` | **200, live** (2026-08-29) | — | Suspension lifted. See §6. |
 
 Implementation:
 
@@ -147,7 +159,32 @@ Resolve Q2 during Phase 1 by diffing the two trees on a shared topic and recordi
 
 ### 4.1 Host
 
-**The apex returns 403.** All routes must use `www`. Verified:
+> [!WARNING]
+> **Unreachable as of 2026-08-29.** Every request to both hosts timed out after 20–25
+> seconds, across two runs an hour apart:
+>
+> ```
+> https://tupcavite.edu.ph/         → curl (28) timeout      [2026-08-29]
+> https://www.tupcavite.edu.ph/     → curl (28) timeout      [2026-08-29]
+> https://www.tupcavite.edu.ph/programs → curl (28) timeout  [2026-08-29]
+> ```
+>
+> **Confirmed from a second network** on 2026-08-29 by the project owner, so this is the
+> site and not the path to it. A timeout is still a weaker finding than a 403 or a 404 —
+> it says nothing about *why* — but it is enough to stop claiming a 200 that is not
+> there. `campuses.cavite.website_status` is `unavailable`.
+>
+> **The Cavite adapter cannot be written until it returns.** There are no fixtures to
+> write a parser against, and a parser written against guessed markup is one that has
+> never seen its own page. When it comes back: re-run `scripts/verify-sources.sh`,
+> capture fixtures, and check whether §4.1's 2026-08-20 facts (apex 403, `www` 200, no
+> robots.txt) still hold — a site that has been down is a site that may have changed.
+> The manual-collection path (`method: 'manual'`) is the fallback if it returns but the
+> fetcher still cannot reach it.
+>
+> Everything below was verified 2026-08-20 and has not been re-confirmed since.
+
+**The apex returned 403 on 2026-08-20.** All routes must use `www`. Verified:
 
 ```
 https://tupcavite.edu.ph/       → 403   (nginx, static page, Last-Modified 2021-04-29)
@@ -241,9 +278,10 @@ The file also declares the Content-Signals to be express reservations of rights 
 
 | Route | Status | Entities |
 |---|---|---|
-| `/academics/undergraduate-programs` | 200, 61 KB | `program_offerings` |
-| `/officials` | 200, 58 KB | `officials` (with photos) |
-| `/academics`, `/academics/{coac,coe,coet}` | untested | `academic_units` |
+| `/academics/undergraduate-programs` | **200, 61 KB** [2026-08-29] | `program_offerings` — 16 records |
+| `/academics` | **200, 36 KB** [2026-08-29] | `academic_units` — 3 colleges, with prose |
+| `/academics/{coac,coe,coet}` | **200** [2026-08-29] | college prose; not parsed, `/academics` already has it |
+| `/officials` | 200, 58 KB [2026-08-20] | `officials` (with photos) |
 | `/news-events`, `/news/{slug}` | untested | `announcements` |
 | `/announcements` | untested | `announcements` (`advisory`) |
 | `/bid-opportunities` | untested | `announcements` (`bid`) |
@@ -255,13 +293,40 @@ The file also declares the Content-Signals to be express reservations of rights 
 
 Slug-based news URLs make stable `announcements.slug` straightforward — no ID mapping, unlike Cavite.
 
+**Program slugs are published too.** Each card on `/academics/undergraduate-programs`
+links to `/academics/{college}/programs/{program-slug}`, giving a CMS-assigned slug that
+survives a title edit. Manila publishes no such field and its adapter has to slugify the
+title instead. `.ug-card__years` also publishes duration, which Manila does not.
+
 **Expectations:** `academic_units {min:3, max:5}`, `officials {min:4, max:40}`, `announcements {min:1, max:200}`.
 
 ---
 
 ## 6. Taguig — `tupt.edu.ph`
 
-**Status: cPanel account suspended.** Not 404, not offline.
+**Status: LIVE as of 2026-08-29.** The suspension has been lifted.
+
+```
+https://tupt.edu.ph/  → 200, 55,922 bytes, <title>TUP-T</title>   [verified 2026-08-29]
+                        no suspendedpage.cgi redirect, no suspension text
+```
+
+Against the corrected E13 predicate — 200, final URL not `suspendedpage.cgi`, body over
+5,120 bytes, no "suspended"/"coming soon"/"parked" text — this evaluates to **live**.
+That is ADR-012's trigger, and it has fired for the first time.
+
+**What this changes.**
+
+- `campuses.taguig.website_status` moves from `suspended` to `active`. `seeds/campuses.yaml`
+  is updated; `confidence` stays `low`, because nothing in that row has yet been read
+  from a Taguig source — only the status claim has been re-verified.
+- The Taguig adapter stops being a stub and becomes real work. It belongs to M9 with the
+  other campuses, not to the Manila slice.
+- PRD R3 rates "Taguig stays offline indefinitely" as High likelihood. That risk has not
+  materialised. The §7 note below — that a diff here changes what the project can do —
+  is exactly what happened.
+
+**Previous state, for the record:**
 
 ```
 https://tupt.edu.ph/  → 302 → https://tupt.edu.ph/cgi-sys/suspendedpage.cgi → 200
@@ -283,7 +348,37 @@ live  ⟺  HTTP 200
 
 Model it as `campuses.website_status = 'suspended'` — a distinct value from `unavailable`, because it is publishable information that is genuinely useful to a student: *"this campus's site is temporarily down"* is a different fact from *"this campus has no web presence."* See ADR-017.
 
-Until it returns: seed the campus by hand, attribute facts drawn from sibling sites to the sibling as `source_id`, `confidence = 'low'`, `method = 'seed'`.
+Until it is crawled: the campus stays hand-seeded, with facts drawn from sibling sites
+attributed to the sibling as `source_id`, `confidence = 'low'`, `method = 'seed'`. The
+site being reachable does not by itself make anything in that row verified.
+
+### 6.1 Routes  [verified 2026-08-29]
+
+**Unit vocabulary: 4 departments → `unit_type = 'department'`.** Taguig is the second
+department campus, and with Cavite unreachable it is the one that actually validates
+[`02-ADRs.md ADR-002`](./02-ADRs.md).
+
+| Route | Status | Entities |
+|---|---|---|
+| `/progoff` | 200, 40 KB | `program_offerings` — 22 records, all on one page |
+| `/academics/department/{basd,caad,eaad,maad}` | 200, 41–53 KB | `academic_units` — name, prose, department head |
+| `/academics/department` | **404** | no index page; the four slugs are enumerated explicitly |
+| `/offices/*` (16 routes) | untested | `offices` |
+| `/bor`, `/admin`, `/directory` | untested | `officials` |
+| `/newsfeed`, `/newsfeed/{slug}` | untested | `announcements` |
+| `/transparency`, `/acadcal`, `/philgeps`, `/bids` | untested | `documents` |
+
+**robots.txt is absent** — `/robots.txt` returns the site's own HTML homepage, which the
+fetcher treats as absent (allow-all per RFC 9309, cached 24h).
+
+**The owning department is a CSS class on `/progoff`**, `courses-col eaad`, and nowhere
+else on the page. `/academics/department/eaad` misnames itself in its own heading
+("Electrical and AlliedDepartment" — a `<span>` with no preceding space); the nav spells
+it correctly and the adapter reads the nav.
+
+**Expectations:** `academic_units {min:3, max:8}`, `program_offerings {min:4, max:15}` —
+the latter counts published rows, after canonicalisation merges the twelve BET variants
+into one offering.
 
 ---
 

@@ -26,6 +26,28 @@ else
   echo "ok"
 fi
 
+echo "── parse-purity gate (ADR-005, docs/14 §3.4) ──"
+# `parse` must be a pure function of its bytes. A clock or a random number inside an
+# adapter makes the golden fixture tests — half of all test effort here — impossible.
+if grep -rInE "Date\.now|Math\.random|crypto\.randomUUID|new Date\(\s*\)" \
+     packages/adapters/src 2>/dev/null | grep -v '^\s*[0-9]*:\s*[/*]'; then
+  echo "FAIL: an adapter reads the clock or generates randomness. Timestamps come from the pipeline."
+  fail=1
+else
+  echo "ok"
+fi
+
+echo "── adapters-cannot-fetch gate (ADR-005) ──"
+# The politeness layer is structurally unbypassable only while adapters have no way to
+# reach the network. An import is the whole attack surface, so grep for the import.
+if grep -rInE "from '(undici|node:https?|node:fs|node:fs/promises)'|require\('(undici|node:https?)'\)|@tup/core/http|globalThis\.fetch" \
+     packages/adapters/src 2>/dev/null; then
+  echo "FAIL: an adapter imports a network or filesystem client. Fetching is centralised."
+  fail=1
+else
+  echo "ok"
+fi
+
 echo "── secrets gate ──"
 if git ls-files --error-unmatch .env >/dev/null 2>&1; then
   echo "FAIL: .env is tracked by git. Remove it and rotate every credential it held."

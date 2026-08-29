@@ -14,7 +14,7 @@ set -uo pipefail
 
 DELAY="${DELAY:-3}"
 TIMEOUT="${TIMEOUT:-20}"
-BOT_UA="TUPOpenDataBot/1.0 (+https://github.com/<org>/tup-open-api; student open-data project; <contact-email>)"
+BOT_UA="TUPOpenDataBot/1.0 (+https://github.com/kienserapio/TUP-API; student open-data project)"
 
 pause() { sleep "$DELAY"; }
 

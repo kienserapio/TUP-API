@@ -1,0 +1,43 @@
+{
+  "byEntity": {
+    "academic_unit": [
+      {
+        "slug": "coac",
+        "name": "College of Automation and Control Engineering",
+        "abbreviation": null,
+        "unit_type": "college",
+        "description": "Industrial automation, instrumentation, and control systems that power modern manufacturing and process industries.",
+        "head_name": null,
+        "head_title": null,
+        "emails": [],
+        "website": null,
+        "status": "active"
+      },
+      {
+        "slug": "coe",
+        "name": "College of Engineering",
+        "abbreviation": null,
+        "unit_type": "college",
+        "description": "Civil, mechanical, electrical, and allied engineering fields grounded in design, analysis, and professional practice.",
+        "head_name": null,
+        "head_title": null,
+        "emails": [],
+        "website": null,
+        "status": "active"
+      },
+      {
+        "slug": "coet",
+        "name": "College of Engineering Technology",
+        "abbreviation": null,
+        "unit_type": "college",
+        "description": "Advanced manufacturing, digital technology, and applied engineering pathways built for industry-ready graduates.",
+        "head_name": null,
+        "head_title": null,
+        "emails": [],
+        "website": null,
+        "status": "active"
+      }
+    ]
+  },
+  "warnings": []
+}

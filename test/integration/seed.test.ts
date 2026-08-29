@@ -28,10 +28,27 @@ describe('campuses', () => {
     expect(rows.map((r) => r.slug)).toEqual(['cavite', 'manila', 'taguig', 'visayas']);
   });
 
-  test('Taguig is suspended, not unavailable — a different and more recoverable state', async () => {
+  test('Taguig carries a real website_status, not a guess', async () => {
+    // It was 'suspended' on 2026-08-20 — a cPanel suspension notice served as HTTP
+    // 200, which is a different and more recoverable state than 'unavailable'
+    // (ADR-017). It came back online by 2026-08-29, so the seed now says 'active'.
+    // The value is whatever the last verification found; what this test protects is
+    // that it is one of the states the enum actually distinguishes, never a default.
     const [row] = await sql<{ status: string }[]>`
       SELECT website_status AS status FROM campuses WHERE slug = 'taguig'`;
-    expect(row?.status).toBe('suspended');
+    expect(['active', 'suspended', 'unavailable']).toContain(row?.status);
+    expect(row?.status).toBe('active');
+  });
+
+  test('every campus website_status is a value the enum distinguishes', async () => {
+    const rows = await sql<{ slug: string; status: string }[]>`
+      SELECT slug, website_status AS status FROM campuses`;
+    for (const row of rows) {
+      expect(
+        ['active', 'unavailable', 'suspended', 'blocked', 'retired'],
+        `${row.slug} has an unmodelled status`,
+      ).toContain(row.status);
+    }
   });
 
   test('every website matches its canonical origin [E5]', async () => {
@@ -71,10 +88,21 @@ describe('provenance', () => {
     }
   });
 
-  test('hand curation claims high confidence, not low', async () => {
-    const [row] = await sql<{ n: number }[]>`
-      SELECT count(*)::int AS n FROM campuses WHERE confidence <> 'high'`;
-    expect(row?.n).toBe(0);
+  test('hand curation claims high confidence for the campuses we can actually check', async () => {
+    // Hand curation is a STRONGER provenance claim than a scrape, not a weaker one:
+    // someone typed these four rows after reading the sites.
+    const rows = await sql<{ slug: string; confidence: string }[]>`
+      SELECT slug, confidence::text AS confidence FROM campuses WHERE slug <> 'taguig'`;
+    for (const row of rows) expect(row.confidence, row.slug).toBe('high');
+  });
+
+  test('Taguig claims low confidence, because nothing about it came from Taguig', async () => {
+    // docs/08 §6, ADR-012: every fact here is drawn from a sibling site. Saying 'high'
+    // would be the API vouching for something it never verified — the exact failure
+    // the provenance layer exists to prevent.
+    const [row] = await sql<{ confidence: string }[]>`
+      SELECT confidence::text AS confidence FROM campuses WHERE slug = 'taguig'`;
+    expect(row?.confidence).toBe('low');
   });
 });
 
@@ -88,9 +116,24 @@ describe('canonical program registry — ADR-003', () => {
     expect(row?.with_aliases).toBe(row?.n);
   });
 
-  test('no offering was auto-created from a fuzzy match', async () => {
-    // Nothing has been ingested yet; the assertion is that seeding never invents offerings.
-    const [row] = await sql<{ n: number }[]>`SELECT count(*)::int AS n FROM program_offerings`;
+  test('no canonical program was ever created by anything but a human', async () => {
+    // ADR-003's actual invariant, and the one that has to survive ingestion: an
+    // offering may be matched, fuzzily matched, or left unmatched, but the registry
+    // only ever grows by someone editing seeds/programs.yaml. Every `programs` row
+    // must therefore still be attributed to the synthetic seed source.
+    const [row] = await sql<{ n: number }[]>`
+      SELECT count(*)::int AS n
+      FROM programs p JOIN sources s ON s.id = p.source_id
+      WHERE s.url <> 'seed://tup-open-api/seeds'`;
+    expect(row?.n, 'a canonical program was created by the pipeline').toBe(0);
+  });
+
+  test('every offering is either matched to a seeded program or honestly unmatched', async () => {
+    const [row] = await sql<{ n: number }[]>`
+      SELECT count(*)::int AS n
+      FROM program_offerings o
+      WHERE o.program_id IS NOT NULL
+        AND NOT EXISTS (SELECT 1 FROM programs p WHERE p.id = o.program_id)`;
     expect(row?.n).toBe(0);
   });
 });

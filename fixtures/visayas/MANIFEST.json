@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "file": "academics-2026-08-29.html",
+      "url": "https://tupvisayas.edu.ph/academics",
+      "collected_at": "2026-08-29T13:55:55.929Z",
+      "collected_by": "kien",
+      "sha256": "059373d2ef34c4d3caa52cbaba710991a72ad787e940e6205add43c6efbd0f62",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "college index"
+    },
+    {
+      "file": "academics-undergraduate-programs-2026-08-29.html",
+      "url": "https://tupvisayas.edu.ph/academics/undergraduate-programs",
+      "collected_at": "2026-08-29T13:55:48.415Z",
+      "collected_by": "kien",
+      "sha256": "639ab1eb05a7b61c8735dc5c27b307cefda331e20abdeea8fda65e82691cb825",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "program offerings"
+    }
+  ]
+}

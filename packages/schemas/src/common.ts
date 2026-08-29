@@ -33,8 +33,10 @@ export const SOURCE_STATUSES = [
 ] as const;
 export const sourceStatus = z.enum(SOURCE_STATUSES).meta({
   description:
-    "Liveness of the campus's public website. 'suspended' means the host serves a " +
-    "suspended-account page (HTTP 200), which differs from 'unavailable'.",
+    "Liveness of the campus's public website, as last verified. 'suspended' means the " +
+    "host serves a suspended-account page (HTTP 200), which differs from 'unavailable'. " +
+    'This describes the site, not the data: a campus can be `active` here and still ' +
+    'carry `confidence: low`, meaning nothing has been read from it yet.',
   example: 'active',
 });
 

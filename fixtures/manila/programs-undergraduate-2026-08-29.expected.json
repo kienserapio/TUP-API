@@ -1,0 +1,6 @@
+{
+  "byEntity": {},
+  "warnings": [
+    "undergraduate-programs page is a Google Drive PDF embed, not HTML; program offerings are read from courses/academics/{college} instead"
+  ]
+}

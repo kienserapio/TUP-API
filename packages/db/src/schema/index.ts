@@ -11,3 +11,4 @@ export * from './enums.js';
 export * from './provenance.js';
 export * from './sources.js';
 export * from './core.js';
+export * from './pipeline.js';

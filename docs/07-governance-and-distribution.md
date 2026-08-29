@@ -39,6 +39,44 @@ robots.txt is a directive to automated crawlers. It is not an access control mec
 
 This distinction is real and worth stating plainly: a student opening a public university page in a browser and saving it is not crawling. The `method = 'manual'` source type encodes that difference in the data model, so provenance stays honest about how each record was obtained.
 
+### 1.3.1 AI-crawler signals and the no-training commitment — D6, decided 2026-08-29
+
+`tupvisayas.edu.ph` serves Cloudflare-managed directives that `Disallow: /` nine named
+AI crawlers and declare, as an express reservation of rights under Article 4 of EU
+Directive 2019/790:
+
+```
+Content-Signal: search=yes,ai-train=no,use=reference
+```
+
+`TUPOpenDataBot` is not among the named agents and the `User-agent: *` group is
+`Allow: /`, so the crawl is permitted. **The project does not rest on that
+technicality.** The position, decided by the project owner on 2026-08-29 and binding on
+every adapter:
+
+1. **Crawl what is permitted, and identify honestly.** One user-agent, a working contact
+   URL, no evasion of any block that has been stated.
+2. **Never train or fine-tune any model on ingested content.** `search=yes` permits
+   indexing and `use=reference` permits AI systems to consume the content as reference —
+   which is what the REST API, `/v1/search` and the MCP server do. `ai-train=no`
+   prohibits training, which this project does not do and commits here not to do. That
+   commitment belongs verbatim in `LICENSE-DATA` and `llms.txt`.
+3. **Store the signal and stop when it changes.** `sources.content_signal` holds the
+   parsed value per domain, and the fetcher **fails the run** on any change rather than
+   logging and continuing. A silently-appearing `ai-input=no` must halt the Visayas
+   pipeline, not be discovered months later ([`00-errata.md`](./00-errata.md) E11).
+4. **Say so openly**, here and in the consumer guide, rather than leaving a reader to
+   infer it from a robots file.
+
+`ai-input` — RAG, grounding, retrieval — is unspecified in the signal: neither granted
+nor restricted. The project treats retrieval as covered by `use=reference` and will stop
+if that reading is ever contradicted.
+
+**This is a posture, not a permission.** If TUPV enables Cloudflare's AI-bot WAF rule —
+an adjacent toggle, not a code change — the adapter starts receiving 403s regardless of
+compliance, and the response is [§4](#4-takedown-and-objection-policy) and the
+`method = 'manual'` path, never evasion.
+
 ### 1.4 Institutional permission
 
 Per ADR-013, no permission is sought before launch. The project operates entirely within what is available without it. The `sources.method` enum means that if automated crawling of currently-blocked routes is ever wanted, enabling it is a config change rather than a redesign.

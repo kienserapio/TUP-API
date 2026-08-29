@@ -111,8 +111,24 @@ describe('GET /v1/campuses/{slug}', () => {
   });
 });
 
+/** docs/14 §5.1 — table-driven, so a new endpoint inherits every rule automatically. */
+const COLLECTIONS = [
+  '/v1/campuses',
+  '/v1/campuses/manila/units',
+  '/v1/units',
+  '/v1/programs',
+  '/v1/offerings',
+];
+const MEMBERS = [
+  '/v1/campuses/manila',
+  '/v1/campuses/taguig',
+  '/v1/units/manila/coe',
+  '/v1/programs/bsce',
+  '/v1/offerings/manila/bsce',
+];
+
 describe('universal assertions — every endpoint inherits these', () => {
-  const endpoints = ['/v1/campuses', '/v1/campuses/manila', '/v1/campuses/taguig'];
+  const endpoints = [...COLLECTIONS, ...MEMBERS];
 
   test.each(endpoints)('%s ships provenance in the DEFAULT payload (ADR-004)', async (path) => {
     const res = await app.request(path);
@@ -156,6 +172,77 @@ describe('universal assertions — every endpoint inherits these', () => {
     const res = await app.request('/v1/nope');
     expect(res.status).toBe(404);
     expect(res.headers.get('content-type')).toContain('application/problem+json');
+  });
+
+  test.each(endpoints)('%s rejects an unknown query parameter', async (path) => {
+    const res = await app.request(`${path}${path.includes('?') ? '&' : '?'}bogus=1`);
+    expect(res.status).toBe(400);
+    expect(res.headers.get('content-type')).toContain('application/problem+json');
+  });
+
+  test.each(endpoints)('%s emits an ETag and honours If-None-Match', async (path) => {
+    const first = await app.request(path);
+    const etag = first.headers.get('etag');
+    expect(etag, `${path} sent no ETag`).toBeTruthy();
+    const second = await app.request(path, { headers: { 'If-None-Match': etag! } });
+    expect(second.status).toBe(304);
+    expect(await second.text()).toBe('');
+  });
+
+  test.each(endpoints)('%s never emits null where an array is declared', async (path) => {
+    const res = await app.request(path);
+    const body = (await res.json()) as { data: unknown };
+    const items = Array.isArray(body.data) ? body.data : [body.data];
+    for (const item of items) {
+      for (const [key, value] of Object.entries(item as Record<string, unknown>)) {
+        if (['aliases', 'emails', 'majors', 'offerings'].includes(key)) {
+          expect(Array.isArray(value), `${path}: ${key} is not an array`).toBe(true);
+        }
+      }
+    }
+  });
+
+  test.each(endpoints)('%s carries unit_type wherever an academic unit appears', async (path) => {
+    const res = await app.request(path);
+    const text = await res.text();
+    // ADR-002, docs/13 §5.2. If a payload names a unit, it must say what kind it is.
+    for (const match of text.matchAll(/"unit"\s*:\s*(\{[^}]*\})/g)) {
+      expect(match[1], `${path}: a unit without a type`).toContain('"type"');
+    }
+  });
+
+  test.each(COLLECTIONS)('%s caps limit at 100 and 400s above it', async (path) => {
+    expect((await app.request(`${path}?limit=100`)).status).toBe(200);
+    const tooBig = await app.request(`${path}?limit=101`);
+    expect(tooBig.status).toBe(400);
+    expect(tooBig.headers.get('content-type')).toContain('application/problem+json');
+  });
+
+  test.each(COLLECTIONS)('%s reports freshness for what it actually returned', async (path) => {
+    const res = await app.request(path);
+    const body = (await res.json()) as {
+      data: unknown[];
+      meta: { freshness: Record<string, unknown>; generated_at: string };
+      links: { self: string; next: string | null };
+    };
+    expect(body.meta.generated_at).toMatch(/Z$/);
+    expect(body.meta.freshness).toHaveProperty('counts_by_confidence');
+    expect(body.links.self).toContain(path);
+
+    const counts = body.meta.freshness['counts_by_confidence'] as Record<string, number>;
+    expect(counts['high'] + counts['medium'] + counts['low']).toBe(body.data.length);
+  });
+
+  test.each(COLLECTIONS)('%s ETag ignores generated_at, so caching actually works', async (path) => {
+    // The ETag covers resource state, not the moment of assembly (docs/13 §10). If
+    // generated_at were inside it, every response would be a cache miss.
+    const first = await app.request(path);
+    await new Promise((resolve) => setTimeout(resolve, 5));
+    const second = await app.request(path);
+    expect(second.headers.get('etag')).toBe(first.headers.get('etag'));
+    const a = (await first.json()) as { meta: { generated_at: string } };
+    const b = (await second.json()) as { meta: { generated_at: string } };
+    expect(b.meta.generated_at >= a.meta.generated_at).toBe(true);
   });
 });
 

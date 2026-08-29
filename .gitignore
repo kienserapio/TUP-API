@@ -16,4 +16,5 @@ coverage/
 
 # ingest artifacts
 snapshots/
+.snapshots/
 *.log

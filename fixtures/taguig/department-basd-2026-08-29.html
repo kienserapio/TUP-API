@@ -1,0 +1,987 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    
+    <!--====== Title ======-->
+    <title>TUP-T</title>
+
+    <meta name="facebook-domain-verification" content="akzcf2u1m321a4ue5ci8riu8t4ptmx" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="/assets/images/favicon.webp" type="image/webp">
+
+    <style>
+        /* Full-screen gray background */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #808080; /* Gray background */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Ensure it's on top */
+        }
+
+        /* Larger Logo */
+        .loading-logo {
+            width: 150px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 20px; /* Space between logo and loader */
+        }
+
+        /* Smaller Circle Loader */
+        .loader {
+            width: 50px;  /* Smaller size */
+            height: 50px;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-top: 6px solid #ffffff; /* White animated border */
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px; /* Space between loader and text */
+        }
+
+        /* Loading Text Message */
+        .loading-message {
+            color: white;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        /* Keyframes for Spinning Effect */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Prevent scrolling while loading */
+        body.loading {
+            overflow: hidden;
+        }
+    </style>
+
+    <!-- CSS
+    ============================================ -->
+
+<!--===== Vendor CSS (Bootstrap & Icon Font) =====-->
+<link rel="stylesheet" href="/assets/css/plugins/bootstrap.min.css">
+<link rel="stylesheet" href="/assets/css/plugins/fontawesome.min.css">
+<link rel="stylesheet" href="/assets/css/plugins/default.css">
+
+
+<!--===== Plugins CSS (All Plugins Files) =====-->
+<link rel="stylesheet" href="/assets/css/plugins/animate.min.css">
+<link rel="stylesheet" href="/assets/css/plugins/slick.css">
+<link rel="stylesheet" href="/assets/css/plugins/magnific-popup.css">
+
+<!--====== Main Style CSS ======-->
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/assets/css/custom_style.css">
+<!-- <link rel="stylesheet" href="/assets/css/style.min.css"> --></head>
+
+<body class="loading">
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <!-- Large Logo -->
+        <img src="/assets/images/logo.png" alt="Logo" class="loading-logo">
+
+        <!-- Loading Message -->
+        <p class="loading-message">Please wait while all graphical elements are being loaded...</p>
+
+        <!-- Small Loader Below Logo -->
+        <div class="loader"></div>
+    </div>
+
+    <!--====== Header Start ======-->
+
+<header class="header-area">
+    <div class="header-top">
+        <div class="container">
+            <div class="header-top-wrapper d-flex flex-wrap justify-content-sm-between">
+                <div class="header-top-left">
+                    <ul class="header-meta">
+                        <li id="datetime"></li>
+                    </ul>
+                </div>
+                <div class="header-top-right">
+                    <div class="header-link">
+                        <a class="login" href="https://ers.tup.edu.ph/aims/students/">ERS Student</a>
+                        <a class="register" href="https://ers.tup.edu.ph/aims/faculty/">ERS Faculty</a>
+                        <a class="register" href="/admin/login">WebAdmin</a>
+                        <!-- <a class="notice" href="/notice.html">Notice</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="navigation" class="navigation navigation-landscape">
+        <img src="/assets/images/tupt_portal_banner_no_logo.png" alt="Background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1;">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="logo-img header-logo">
+                        <a href="/"><img src="/assets/images/logo.png" alt="Logo"></a>
+                    </div>
+                </div>
+                <div class="col-lg-10 position-static banner-text">
+                    <img src="/assets/images/tupt-text.png" alt="" style="width: 80%;">
+                </div>
+                <div class="col-lg-12 position-static main-nav">
+                    <div class="nav-toggle"></div>
+                    <nav class="nav-menus-wrapper">
+                        <ul class="nav-menu">
+                            <li>
+    <a href="/gen-info">About</a>
+    <ul class="nav-dropdown nav-submenu">
+        <li><a href="/gen-info">University Profile</a></li>
+        <li><a href="/mandate">TUP Mandate</a></li>
+        <li><a href="/bor">Board of Regents</a></li>
+        <li><a href="/admin">Administration</a></li>
+<!--        <li><a href="/directory">Directory</a></li>-->
+        <li><a href="/transparency">Transparency Seal</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#">Academics</a>
+    <ul class="nav-dropdown nav-submenu">
+        <li><a href="/progoff">Program Offerings</a></li>
+        <li><a href="/acadcal">Academic Calendar</a></li>
+        <li>
+            <a href="#">Departments</a>
+            <ul class="nav-dropdown nav-submenu">
+                <li><a href="/academics/department/basd">Basic Arts and Sciences Department</a></li>
+                <li><a href="/academics/department/caad">Civil and Allied Department</a></li>
+                <li><a href="/academics/department/eaad">Electrical and Allied Department</a></li>
+                <li><a href="/academics/department/maad">Mechanical and Allied Department</a></li>
+            </ul>
+        </li>
+    </ul>
+</li>
+<li>
+    <a href="#">Offices</a>
+    <ul class="nav-dropdown nav-submenu">
+        <li><a href="/offices/do">Directors Office</a></li>
+        <li><a href="/offices/adaa">Assistant Director for Academic Affairs Office</a></li>
+        <li><a href="/offices/adaf">Assistant Director for Admin and Finance Office</a></li><li><a href="/offices/adre">Assistant Director for Research and Extension Office</a></li>
+        <li><a href="/offices/adre">Assistant Director for Research and Extension Office</a></li>
+        <li>
+            <a href="#">Support to Student Offices</a>
+            <ul class="nav-dropdown nav-submenu">
+                <li><a href="/offices/osa">Office of Student Affairs</a></li>
+                <li><a href="/offices/registrar">Registrar's Office</a></li>
+                <li><a href="/offices/guidance">Guidance Office</a></li>
+                <li><a href="/offices/clinic">Health Services Office</a></li>
+                <li><a href="/offices/uitc">University Information Technology Center Office</a></li>
+                <li><a href="/offices/lrc">Learning and Resource Center</a></li>
+            </ul>
+        </li>
+<!--        <li>-->
+<!--            <a href="#">Other Offices</a>-->
+<!--            <ul class="nav-dropdown nav-submenu">-->
+<!--                <li><a href="/offices/hrmo">Human Resource Management Office</a></li>-->
+<!--                <li><a href="/offices/accounting">Accounting Office</a></li>-->
+<!--                <li><a href="/offices/budget">Budget and Finance Office</a></li>-->
+<!--                <li><a href="/office/budget">Planning Office</a></li>-->
+<!--                <li><a href="/offices/procurement">Procurement Office</a></li>-->
+<!--                <li><a href="/offices/supply">Property and Supply Office</a></li>-->
+<!--                <li><a href="/offices/qa">Quality Assurance Office</a></li>-->
+<!--            </ul>-->
+<!--        </li>-->
+    </ul>
+</li>
+<!--<li>-->
+<!--    <a href="#">Student Life</a>-->
+<!--    <ul class="nav-dropdown nav-submenu">-->
+<!---->
+<!--    </ul>-->
+<!--</li>-->
+<li>
+    <a href="#">Procurement</a>
+    <ul class="nav-dropdown nav-submenu">
+        <li><a href="/bids">Bid Opportunities </a></li>
+<!--        <li><a href="/philgeps">Philgeps Posting</a></li>-->
+    </ul>
+</li>
+<li><a href="/careers">Career</a></li>
+<!--<li><a href="/accre">Accreditation</a></li>-->                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!--====== Header Ends ======-->
+<!---->
+<!--<div class="toast-container position-fixed bottom-1 end-0 p-3">-->
+<!--    <div id="liveToast" class="toast bg-warning text-dark" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="10000">-->
+<!--        <div class="toast-header bg-warning text-dark">-->
+<!--            <!-- Optional icon or image -->-->
+<!--            <strong class="me-auto">Warning</strong>-->
+<!--            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>-->
+<!--        </div>-->
+<!--        <div class="toast-body">-->
+<!--            This website is still undergoing major development, some parts and functionality might still not work accordingly.-->
+<!--<!--        </div>-->-->
+<!--<!--    </div>-->-->
+<!--</div>-->
+    
+    <!--====== Page Banner Start ======-->
+
+    <section class="page-banner">
+        <div class="page-banner-bg bg_cover" style="background-image: url(/assets/images/page-banner.png);">
+            <div class="container">
+                <div class="banner-content text-center">
+                    <h2 class="title">University Departments</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== Page Banner Ends ======-->
+
+    <!--====== Campus Start ======-->
+
+    <section class="campus-visit-area-2">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="about-content mt-40">
+                        <h2 class="about-title">Basic Arts and Sciences <span>Department</span></h2>
+                        <span class="line"></span>
+                        <p>The Basic Arts and Sciences Department plays a vital role in providing
+                            foundational knowledge and skills in various disciplines. Beyond
+                            offering specialized programs in technical-vocational education, it
+                            also serves as a service department, delivering essential courses in
+                            Mathematics, Sciences, Arts, and Languages.</p>
+<!--                        <a href="/#" class="main-btn">Explore</a>-->
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="campus-image-2 mt-50">
+                        <div class="image-1">
+                            <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/basd-1.png?updatedAt=1741952589145" width="585" height="308" alt="campus">
+                        </div>
+                        <div class="image-2">
+                            <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/basd-2.png?updatedAt=1741952589006" width="253" height="220" alt="campus">
+                        </div>
+                        <div class="image-3">
+                            <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/basd-3.png?updatedAt=1741952589017" width="412" height="270" alt="campus">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== Campus Ends ======-->
+
+    <!--====== Testimonials Start ======-->
+
+    <section class="testimonials-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="testimonials-wrapper">
+                        <div class="testimonials-shape shape-1"></div>
+                        <div class="testimonials-shape shape-2"></div>
+                        <div class="testimonials-shape shape-3"></div>
+
+                        <div class="row no-gutters">
+                            <div class="col-lg-12 col-md-5">
+                                <div class="testimonials-image">
+                                    <div class="single-testimonial-image">
+                                        <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_ramos_h.png?updatedAt=1741952813272" width="313" height="579" alt="testimonials">
+                                    </div>
+                                </div>
+                            </div>
+<!--                            <div class="col-lg-6 col-md-7">-->
+<!--                                <div class="testimonials-content">-->
+<!--                                    <div class="single-testimonial-content">-->
+<!--                                        <div class="content-text">-->
+<!--                                            <i class="fas fa-quote-right"></i>-->
+<!--                                            <p></p>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="testimonials-title">
+                        <h2 class="title">Dr. Heherson P. Ramos, LPT</h2>
+                        <span class="line"></span>
+                        <p>Department Head</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== Testimonials Ends ======-->
+
+    <!--====== Counter Start ======-->
+
+<!--    <div class="counter-area-2">-->
+<!--        <div class="container">-->
+<!--            <div class="counter-wrapper-2 bg_cover" style="background-image: url(/assets/images/counter-bg-2.webp);">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-3 col-6 counter-col">-->
+<!--                        <div class="single-counter mt-30">-->
+<!--                            <span class="counter-count"><span class="count" data-count="3652">0</span> +</span>-->
+<!--                            <p>Students</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-3 col-6 counter-col">-->
+<!--                        <div class="single-counter mt-30">-->
+<!--                            <span class="counter-count"><span class="count" data-count="105">0</span> +</span>-->
+<!--                            <p>Faculties</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-3 col-6 counter-col">-->
+<!--                        <div class="single-counter mt-30">-->
+<!--                            <span class="counter-count"><span class="count" data-count="120">0</span> +</span>-->
+<!--                            <p>Branches</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-sm-3 col-6 counter-col">-->
+<!--                        <div class="single-counter mt-30">-->
+<!--                            <span class="counter-count"><span class="count" data-count="30">0</span> +</span>-->
+<!--                            <p>Awards win</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!--====== Counter Ends ======-->
+
+    <!--====== Top Courses Start ======-->
+
+    <section class="top-courses-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="section-title mt-40">
+                        <h2 class="title">Programs Offered</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="courses-wrapper">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 courses-col">
+                        <div class="single-courses mt-30" style="background-color: #0F162F;">
+                            <a href="" class="category">BTVTEICT-ET</a>
+                            <h4 class="courses-title"><a href="/academics/BTVTEd_ET">Bachelor of Technical-Vocational Teacher Education major in Electrical<br>Technology</a></h4>
+                            <div class="courses-link">
+                                <a class="more" href="/academics/BTVTEd_ET">Read more <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 courses-col">
+                        <div class="single-courses mt-30" style="background-color: #2C3E5A;">
+                            <a href="/#" class="category">BTVTEICT-ELXT</a>
+                            <h4 class="courses-title"><a href="/academics/BTVTEd_ELXT">Bachelor of Technical-Vocational Teacher Education major in Electronics Technology</a></h4>
+                            <div class="courses-link">
+                                <a class="more" href="/academics/BTVTEd_ELXT">Read more <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 courses-col">
+                        <div class="single-courses mt-30" style="background-color: #28204E;">
+                            <a href="/#" class="category">BTVTEICT-ICT-CH</a>
+                            <h4 class="courses-title"><a href="/academics/BTVTEd_ICT_CH">Bachelor of Technical-Vocational Teacher Education major in ICT - Computer Hardware Servicing</a></h4>
+                            <div class="courses-link">
+                                <a class="more" href="/academics/BTVTEd_ICT_CH">Read more <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 courses-col">
+                        <div class="single-courses mt-30" style="background-color: #1A3B4F;">
+                            <a href="/#" class="category">BTVTEICT-ICT-CP</a>
+                            <h4 class="courses-title"><a href="/academics/BTVTEd_ICT_CP">Bachelor of Technical-Vocational Teacher Education major in ICT - Computer Programming</a></h4>
+                            <div class="courses-link">
+                                <a class="more" href="/academics/BTVTEd_ICT_CP">Read more <i class="fas fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--====== Top Courses Ends ======-->
+
+    <!--====== Teachers Start ======-->
+
+    <section class="teachers-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="section-title">
+                        <h2 class="title">Faculty Members</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="teachers-wrapper">
+                <div class="row teachers-row justify-content-center">
+                    <div class="col-md-4 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_ramos_h.png?updatedAt=1741952813272" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h4 class="name">Dr. Heherson P. Ramos</h4>
+                                <span class="designation">Department Head</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_ariado_pj.png?updatedAt=1741952822350" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h4 class="name">Patrick Justin Ariado</h4>
+                                <span class="designation">BTVTE Section Head</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row teachers-row">
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_pangan_n.png?updatedAt=1741952813325" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Dr. Norway J. Pangan</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_ramos_l.png?updatedAt=1741952816266" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Dr. Leila Ramos</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_camento_mv.png?updatedAt=1741952823093" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Engr. Ma. Victoria M. Camento</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_dasal_a.png?updatedAt=1741952822532" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Albert B. Dasal</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_olivar_a.png?updatedAt=1741952813051" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Angelica Olivar</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_sobida_l.png?updatedAt=1741952818015" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Lieda A. Sobida</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_mendoza_e.png?updatedAt=1741952812974" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Eliza B. Mendoza</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_aguilar_mlt.png?updatedAt=1741952817927" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Ma. Leonora Theresa M. Aguilar</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_icuspit_ma.png?updatedAt=1741952813106" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Mary Ann B. Icuspit</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_ancero_ir.png?updatedAt=1741952820697" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Ivan Ray Ancero</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_ochoa_m.png?updatedAt=1741952813128" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Engr. Maricel S. Ochoa</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_caurel_m.png?updatedAt=1741952823181" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Mitchie M. Caurel</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_terania_l.png?updatedAt=1741952818155" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Lizette P. Terania</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_torres_rm.png?updatedAt=1741952817729" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Ruby Mae B. Torres</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_legaspi_re.png?updatedAt=1741952813134" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Ron Eric B. Legaspi</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_ariado_pj.png?updatedAt=1741952822350" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Patrick Justin L. Ariado</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_tanto_a.png?updatedAt=1741952817794" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Annaline P. Tanto</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_belardo_sm.png?updatedAt=1741952822407" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Sarah May P. Belardo</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_zaragosa_g.png?updatedAt=1741952818342" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Gelo P. Zaragosa</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_rebanal_pg.png?updatedAt=1741952817764" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Engr. Princess Girly D. Rebanal</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_labro-azuelo_n.png?updatedAt=1741956325721" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Neizzel Joy T. Labro-Azuelo</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_cruz_mg.png?updatedAt=1741952823076" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Maria Gena C. Cruz</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_colegio_r.png?updatedAt=1741952822522" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Randolf A. Colegio</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_azuelo_cm.png?updatedAt=1741952822376" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Christopher Mitchell I. Azuelo</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_habla_mrg.png?updatedAt=1741952812713" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Mary Rose Gabrielle F. Habla</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_sarmiento_mca.png?updatedAt=1741952817701" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Ma. Clowee Anne M. Sarmiento</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_alvarado_km.png?updatedAt=1741952817901" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Krystel May Alvarado</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_cutanda_r.png?updatedAt=1741952823322" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Reginald B. Cutanda</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/unknown.png?updatedAt=1742024947032" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Rogelio C. Mercurio III</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-4 teachers-col">
+                        <div class="single-teacher mt-30 text-center">
+                            <div class="teacher-image">
+                                <img src="https://ik.imagekit.io/tupt/tupt_portal/departments/faculty_members/basd_honorio_r.png?updatedAt=1741952813120" width="266" height="359" alt="teacher">
+                            </div>
+                            <div class="teacher-content">
+                                <h5 class="name">Roselle Honorio</h5>
+                                <span class="designation">Faculty Member</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!--====== Newsletter Start ======-->
+
+<!--<section class="newsletter-area">-->
+<!--    <div class="container">-->
+<!--        <div class="newsletter-wrapper bg_cover wow zoomIn" data-wow-duration="1s" data-wow-delay="0.2s" style="background-image: url(assets/images/newsletter-bg-1.webp);">-->
+<!--            <div class="row align-items-center">-->
+<!--                <div class="col-lg-9">-->
+<!--                    <div class="section-title-2 mt-25">-->
+<!--                        <h2 class="title">Follow Us!</h2>-->
+<!--                        <span class="line"></span>-->
+<!--                        <p>Stay updated on news, events, and campus life by connecting with us on social media.</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-3">-->
+<!--                    <div class="newsletter-form mt-30">-->
+<!--                        <form action="https://www.facebook.com/tuptaguigofficial/">-->
+<!--                            <button class="main-btn main-btn-2">Subscribe now</button>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+
+<section class="newsletter-area">
+    <div class="container">
+        <div class="newsletter-wrapper bg_cover wow zoomIn" data-wow-duration="1s" data-wow-delay="0.2s" style="background-image: url(https://ik.imagekit.io/tupt/tupt_portal/generic/newsletter-bg-1.webp?updatedAt=1741956811888);">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="section-title-2 mt-25">
+                        <h2 class="title">Download our Newsletter</h2>
+                        <span class="line"></span>
+                        <p>Stay Informed on Campus News, Events, and Achievements!</p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="newsletter-form mt-30">
+                        <a data-pdf="https://drive.google.com/file/d/1lb_ZXQsQJaWinfv4hOyZRHvPRv6tMqfe/preview" class="main-btn main-btn-2 transparency openModal" href="#">Read now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--====== Newsletter Ends ======-->
+
+<!-- Modal structure -->
+<div id="pdfModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <iframe id="pdfFrame" src="" width="100%" height="600px"></iframe>
+    </div>
+</div>
+
+<script src="/assets/js/modal.js"></script>
+    <!--====== Footer Start ======-->
+
+<section class="footer-area bg_cover" style="background-image: url(/assets/images/footer-image.png);">
+    <div class="footer-widget">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-link mt-45">
+                        <h4 class="footer-title">Online Services</h4>
+                        <ul class="link-list">
+                            <li><a href="https://www.lbp-eservices.com/egps/portal/index.jsp">Landbank E-Payment</a></li>
+                            <li><a href="/#">TUP VMGO</a></li>
+                            <li><a href="https://ers.tup.edu.ph/aims/students/">ERS For Students</a></li>
+                            <li><a href="https://ers.tup.edu.ph/aims/faculty/">ERS For Faculty</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-link mt-45">
+                        <h4 class="footer-title">About GOVPH</h4>
+                        <ul class="link-list">
+                            <li><p>Learn more about the Philippine government, its<br>structure, how government works and the people<br>behind it.<br><br><br></p></li>
+                            <li><a href="https://data.gov.ph/">Open Data Portal</a></li>
+                            <li><a href="https://www.officialgazette.gov.ph/">Official Gazette</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-link mt-45">
+                        <h4 class="footer-title">Government Links</h4>
+                        <ul class="link-list">
+                            <li><a href="https://pco.gov.ph/">Office of the President</a></li>
+                            <li><a href="https://www.ovp.gov.ph/">Office of the Vice President</a></li>
+                            <li><a href="https://legacy.senate.gov.ph/">Senate of the Philippines</a></li>
+                            <li><a href="https://www.congress.gov.ph/">House of Representatives</a></li>
+                            <li><a href="https://sc.judiciary.gov.ph/">Supreme Court</a></li>
+                            <li><a href="https://ca.judiciary.gov.ph/">Court of Appeals</a></li>
+                            <li><a href="https://sb.judiciary.gov.ph/">Sandiganbayan</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-link mt-45">
+                        <h4 class="footer-title">Contact Info</h4>
+                        <ul class="link-list">
+                            <li>
+                                <p>KM14 East Service Road, Western Bicutan, Taguig City</p>
+                            </li>
+                            <li>
+                                <p><a href="/tel:+6328232456">(+632) 8247-5250 to 54</a></p>
+                            </li>
+                            <li>
+                                <p><a href="/mailto://taguig@tup.edu.ph">taguig@tup.edu.ph</a></p>
+                                <p><a href="/#">www..tupt.edu.ph</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="copyright text-start">
+                        <p>&copy; 2024 <span> Technological University of the Philippines - Taguig </span> | All Rights Reserved</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="copyright text-end">
+                        <p>Developed and Maintained by <a href="/#">UITC</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--====== Footer Ends ======-->
+
+<!--====== BACK TOP TOP PART START ======-->
+
+<a href="/#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!--====== BACK TOP TOP PART ENDS ======-->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("loading-screen").style.display = "flex"; // Ensure loader is visible immediately
+        });
+
+        window.onload = function () {
+            document.getElementById("loading-screen").style.display = "none"; // Hide loader after full page load
+            document.body.classList.remove("loading"); // Allow scrolling
+        };
+    </script>
+
+    <!--====== Jquery js ======-->
+<script src="/assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="/assets/js/vendor/modernizr-3.7.1.min.js"></script>
+
+<!--====== All Plugins js ======-->
+<script src="/assets/js/plugins/popper.min.js"></script>
+<script src="/assets/js/plugins/bootstrap.min.js"></script>
+<script src="/assets/js/plugins/slick.min.js"></script>
+<script src="/assets/js/plugins/jquery.magnific-popup.min.js"></script>
+<script src="/assets/js/plugins/imagesloaded.pkgd.min.js"></script>
+<script src="/assets/js/plugins/isotope.pkgd.min.js"></script>
+<script src="/assets/js/plugins/wow.min.js"></script>
+<script src="/assets/js/plugins/ajax-contact.js"></script>
+
+
+<!--====== Main Activation  js ======-->
+<script src="/assets/js/main.js"></script>
+
+<!--====== User Defined  js ======-->
+<script src="/assets/js/curr_time.js"></script>
+
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function () {-->
+<!--        var toastTrigger = document.getElementById('liveToast');-->
+<!--        var toast = new bootstrap.Toast(toastTrigger);-->
+<!---->
+<!--        // Show the toast-->
+<!--        toast.show();-->
+<!--    });-->
+<!--</script>-->
+</body>
+
+</html>

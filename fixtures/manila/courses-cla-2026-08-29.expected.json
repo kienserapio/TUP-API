@@ -1,0 +1,64 @@
+{
+  "byEntity": {
+    "program_offering": [
+      {
+        "source_name": "Bachelor of Arts in Management major in Industrial Management",
+        "slug": "bachelor-of-arts-in-management-major-in-industrial-management",
+        "local_name": null,
+        "unit_slug": "cla",
+        "majors": [
+          "Industrial Management"
+        ],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Entrepreneurship Management",
+        "slug": "bachelor-of-science-in-entrepreneurship-management",
+        "local_name": null,
+        "unit_slug": "cla",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Bachelor of Science in Hospitality Management",
+        "slug": "bachelor-of-science-in-hospitality-management",
+        "local_name": null,
+        "unit_slug": "cla",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Doctor of Management Science",
+        "slug": "doctor-of-management-science",
+        "local_name": null,
+        "unit_slug": "cla",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      },
+      {
+        "source_name": "Master in Management",
+        "slug": "master-in-management",
+        "local_name": null,
+        "unit_slug": "cla",
+        "majors": [],
+        "years": null,
+        "status": "active",
+        "accreditation": null,
+        "curriculum_url": null
+      }
+    ]
+  },
+  "warnings": []
+}

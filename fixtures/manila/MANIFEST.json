@@ -1,0 +1,84 @@
+{
+  "files": [
+    {
+      "file": "courses-cafa-2026-08-29.html",
+      "url": "https://tup.edu.ph/courses/academics/cafa",
+      "collected_at": "2026-08-29T12:45:34.426Z",
+      "collected_by": "kien",
+      "sha256": "d51798dcb259d67198d87129f5d7b34dd66ca6247634eed75cae791dfeaafc16",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "cafa courses offered"
+    },
+    {
+      "file": "courses-cie-2026-08-29.html",
+      "url": "https://tup.edu.ph/courses/academics/cie",
+      "collected_at": "2026-08-29T12:45:58.023Z",
+      "collected_by": "kien",
+      "sha256": "25f8702ff54a37b86d8cbeb83b0472c724a5d95f8e725d62f6c61537aebef887",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "cie courses offered"
+    },
+    {
+      "file": "courses-cit-2026-08-29.html",
+      "url": "https://tup.edu.ph/courses/academics/cit",
+      "collected_at": "2026-08-29T12:45:25.589Z",
+      "collected_by": "kien",
+      "sha256": "a4e0caa0847ace124ee2806120e99638999dd02e2b0e6f824a51a62604b1d5c5",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "cit courses offered"
+    },
+    {
+      "file": "courses-cla-2026-08-29.html",
+      "url": "https://tup.edu.ph/courses/academics/cla",
+      "collected_at": "2026-08-29T12:45:50.296Z",
+      "collected_by": "kien",
+      "sha256": "6b42192dee409dece2dce701de8b113d5a39d857bd47a900e0e16f2c597d88da",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "cla courses offered"
+    },
+    {
+      "file": "courses-coe-2026-08-29.html",
+      "url": "https://tup.edu.ph/courses/academics/coe",
+      "collected_at": "2026-08-29T12:44:46.307Z",
+      "collected_by": "kien",
+      "sha256": "2a0b535b7cda1da4b76835f5ee68ea88957ace59826a8c03a402c6153cbc1120",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "College of Engineering courses offered"
+    },
+    {
+      "file": "courses-cos-2026-08-29.html",
+      "url": "https://tup.edu.ph/courses/academics/cos",
+      "collected_at": "2026-08-29T12:45:42.509Z",
+      "collected_by": "kien",
+      "sha256": "da3aa935c0a83e47a31c3ef305d321baf93754f28a025e082af4aed937ab3e5f",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "cos courses offered"
+    },
+    {
+      "file": "page-academics-2026-08-29.html",
+      "url": "https://tup.edu.ph/page/academics",
+      "collected_at": "2026-08-29T12:44:19.941Z",
+      "collected_by": "kien",
+      "sha256": "1e26990444a0e8ee625056ed10b9e79990b4ccb8b3f18c72d2aa7e9d07087a0a",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "legacy /page/* generation; open question Q2"
+    },
+    {
+      "file": "programs-undergraduate-2026-08-29.html",
+      "url": "https://tup.edu.ph/pages/admission/undergraduate-programs",
+      "collected_at": "2026-08-29T12:42:41.147Z",
+      "collected_by": "kien",
+      "sha256": "098a0850474cbfb9515e587d554f53234e695535f161ea5dfff91720076aaf04",
+      "content_type": "text/html; charset=UTF-8",
+      "http_status": 200,
+      "note": "current generation; docs/08 \u00a73.3"
+    }
+  ]
+}
