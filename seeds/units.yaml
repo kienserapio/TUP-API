@@ -1,0 +1,35 @@
+# Academic units. ADR-002: one table, one discriminator.
+# Manila and Visayas have COLLEGES. Cavite has DEPARTMENTS. Never flatten this.
+# Unit vocabulary per campus verified in docs/08 §3, §4, §5.
+
+manila:
+  unit_type: college
+  units:
+    - { slug: coe,  abbreviation: COE,  name: College of Engineering }
+    - { slug: cit,  abbreviation: CIT,  name: College of Industrial Technology }
+    - { slug: cafa, abbreviation: CAFA, name: College of Architecture and Fine Arts }
+    - { slug: cos,  abbreviation: COS,  name: College of Science }
+    - { slug: cla,  abbreviation: CLA,  name: College of Liberal Arts }
+    - { slug: cie,  abbreviation: CIE,  name: College of Industrial Education }
+
+visayas:
+  unit_type: college
+  units:
+    - { slug: coac, abbreviation: COAC, name: College of Automation and Control }
+    - { slug: coe,  abbreviation: COE,  name: College of Engineering }
+    - { slug: coet, abbreviation: COET, name: College of Engineering Technology }
+
+cavite:
+  unit_type: department
+  units:
+    - { slug: engineering,          name: Department of Engineering }
+    - { slug: industrial-technology, name: Department of Industrial Technology }
+    - { slug: industrial-education,  name: Department of Industrial Education }
+    - { slug: liberal-arts,          name: Department of Liberal Arts }
+    - { slug: math-and-science,      name: Department of Mathematics and Science }
+
+# Taguig: no units. The source is suspended and nothing is known. ADR-012 — model the
+# campus honestly rather than inventing structure for it.
+taguig:
+  unit_type: college
+  units: []

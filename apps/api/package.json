@@ -1,0 +1,25 @@
+{
+  "name": "@tup/api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "openapi:generate": "tsx src/cli/generate-openapi.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.1",
+    "@hono/zod-openapi": "^1.6.1",
+    "@tup/db": "workspace:*",
+    "@tup/schemas": "workspace:*",
+    "drizzle-orm": "^0.45.2",
+    "hono": "^4.13.5",
+    "pino": "^10.3.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "pino-pretty": "^13.1.3"
+  }
+}

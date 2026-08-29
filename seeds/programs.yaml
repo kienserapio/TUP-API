@@ -1,0 +1,156 @@
+# Canonical program registry — the campus-agnostic degree list (ADR-003).
+#
+# HAND-MAINTAINED ON PURPOSE. Never auto-create a canonical program from a fuzzy
+# match: that produces near-duplicate degrees which are painful to merge later.
+# Unmatched offerings are written with program_id = NULL and surfaced by
+# `pnpm ingest:unmatched`, then resolved into this file by a human.
+#
+# This is a STARTING SET, not an enumeration of every TUP degree. Trying to enumerate
+# them all before writing an adapter is the breadth-before-depth anti-pattern that
+# docs/04-implementation-plan.md warns about. Grow it from ingest:unmatched output,
+# and verify each entry against the campus source page before relying on it.
+#
+# `aliases` carries source name variants seen in the wild. The matching chain searches
+# it on every offering, so an alias added here removes a manual resolution later.
+
+- slug: bsce
+  name: Bachelor of Science in Civil Engineering
+  level: baccalaureate
+  discipline: engineering
+  typical_years: 4
+  aliases: ['BSCE', 'BS Civil Engineering', 'Civil Engineering']
+
+- slug: bsee
+  name: Bachelor of Science in Electrical Engineering
+  level: baccalaureate
+  discipline: engineering
+  typical_years: 4
+  aliases: ['BSEE', 'BS Electrical Engineering', 'Electrical Engineering']
+
+- slug: bsece
+  name: Bachelor of Science in Electronics Engineering
+  level: baccalaureate
+  discipline: engineering
+  typical_years: 4
+  aliases: ['BSECE', 'BS Electronics Engineering', 'Electronics and Communications Engineering']
+
+- slug: bsme
+  name: Bachelor of Science in Mechanical Engineering
+  level: baccalaureate
+  discipline: engineering
+  typical_years: 4
+  aliases: ['BSME', 'BS Mechanical Engineering', 'Mechanical Engineering']
+
+- slug: bscpe
+  name: Bachelor of Science in Computer Engineering
+  level: baccalaureate
+  discipline: engineering
+  typical_years: 4
+  aliases: ['BSCpE', 'BSCOE', 'BS Computer Engineering', 'Computer Engineering']
+
+- slug: bsie
+  name: Bachelor of Science in Industrial Engineering
+  level: baccalaureate
+  discipline: engineering
+  typical_years: 4
+  aliases: ['BSIE', 'BS Industrial Engineering', 'Industrial Engineering']
+
+- slug: bsche
+  name: Bachelor of Science in Chemical Engineering
+  level: baccalaureate
+  discipline: engineering
+  typical_years: 4
+  aliases: ['BSChE', 'BS Chemical Engineering', 'Chemical Engineering']
+
+- slug: bscs
+  name: Bachelor of Science in Computer Science
+  level: baccalaureate
+  discipline: computing
+  typical_years: 4
+  aliases: ['BSCS', 'BS Computer Science', 'Computer Science']
+
+- slug: bsit
+  name: Bachelor of Science in Information Technology
+  level: baccalaureate
+  discipline: computing
+  typical_years: 4
+  aliases: ['BSIT', 'BS Information Technology', 'Information Technology']
+
+- slug: bs-architecture
+  name: Bachelor of Science in Architecture
+  level: baccalaureate
+  discipline: architecture
+  typical_years: 5
+  aliases: ['BS Architecture', 'BSArch', 'Architecture']
+
+- slug: bfa
+  name: Bachelor of Fine Arts
+  level: baccalaureate
+  discipline: fine_arts
+  typical_years: 4
+  aliases: ['BFA', 'Fine Arts']
+
+- slug: bsmath
+  name: Bachelor of Science in Mathematics
+  level: baccalaureate
+  discipline: science
+  typical_years: 4
+  aliases: ['BSMath', 'BS Mathematics', 'Mathematics']
+
+- slug: bschem
+  name: Bachelor of Science in Chemistry
+  level: baccalaureate
+  discipline: science
+  typical_years: 4
+  aliases: ['BSChem', 'BS Chemistry', 'Chemistry']
+
+- slug: bsentrep
+  name: Bachelor of Science in Entrepreneurship
+  level: baccalaureate
+  discipline: business
+  typical_years: 4
+  aliases: ['BSEntrep', 'BS Entrepreneurship', 'Entrepreneurship']
+
+- slug: btvted
+  name: Bachelor of Technical-Vocational Teacher Education
+  level: baccalaureate
+  discipline: education
+  typical_years: 4
+  # The exact-term case that motivates the 'simple' text-search config over 'english'.
+  aliases: ['BTVTEd', 'BTVTED', 'Technical-Vocational Teacher Education']
+
+- slug: bet
+  name: Bachelor of Engineering Technology
+  level: baccalaureate
+  discipline: engineering_technology
+  typical_years: 4
+  # Majors vary sharply by campus and are captured per-offering, not here.
+  aliases: ['BET', 'Engineering Technology']
+
+- slug: bsind-tech
+  name: Bachelor of Science in Industrial Technology
+  level: baccalaureate
+  discipline: engineering_technology
+  typical_years: 4
+  aliases: ['BSIndTech', 'BS Industrial Technology', 'Industrial Technology']
+
+- slug: bsfoodtech
+  name: Bachelor of Science in Food Technology
+  level: baccalaureate
+  discipline: science
+  typical_years: 4
+  aliases: ['BSFT', 'BS Food Technology', 'Food Technology']
+
+- slug: bsnanotech
+  name: Bachelor of Science in Nanotechnology
+  level: baccalaureate
+  discipline: science
+  typical_years: 4
+  aliases: ['BS Nanotechnology', 'Nanotechnology']
+
+- slug: mem
+  name: Master in Engineering Management
+  level: masters
+  discipline: engineering
+  typical_years: 2
+  aliases: ['MEM', 'Master in Engineering Management']

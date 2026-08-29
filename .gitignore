@@ -1,0 +1,19 @@
+# secrets — must exist before git init
+.env
+.env.*
+!.env.example
+
+node_modules/
+dist/
+build/
+.turbo/
+coverage/
+*.tsbuildinfo
+
+.DS_Store
+.vscode/
+.idea/
+
+# ingest artifacts
+snapshots/
+*.log

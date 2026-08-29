@@ -1,0 +1,44 @@
+{
+  "name": "tup-open-api",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.11.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "test:contract": "vitest run --project contract",
+    "dev": "pnpm --filter @tup/api dev",
+    "db:migrate": "pnpm --filter @tup/db migrate",
+    "db:seed": "pnpm --filter @tup/db seed",
+    "db:reset": "pnpm --filter @tup/db reset",
+    "openapi:generate": "pnpm --filter @tup/api openapi:generate",
+    "gates": "./scripts/ci-gates.sh",
+    "verify": "pnpm gates && pnpm typecheck && pnpm lint && pnpm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tup/db": "workspace:*",
+    "@tup/schemas": "workspace:*",
+    "@types/node": "^26.4.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "dotenv": "^17.4.2",
+    "eslint": "^10.9.1",
+    "eslint-config-prettier": "^10.1.8",
+    "postgres": "^3.4.9",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.12",
+    "turbo": "^2.10.12",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.68.0",
+    "vitest": "^4.1.11"
+  }
+}

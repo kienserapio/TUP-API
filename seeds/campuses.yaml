@@ -1,0 +1,58 @@
+# Hand-curated. Four rows, twenty minutes, more accurate than any scraper.
+# Canonical origins are load-bearing — docs/08-source-landscape.md §1 is the ONLY
+# place hostnames are stated. Two campuses serve on a host the v2.0 docs did not use.
+- slug: manila
+  name: Technological University of the Philippines - Manila
+  short_name: TUP Manila
+  kind: main
+  website: https://tup.edu.ph
+  website_status: active
+  address:
+    street: Ayala Boulevard, Ermita
+    city: Manila
+    region: National Capital Region
+  established: 1901
+  description: >-
+    The main campus of the TUP system. Six colleges. Legacy PHP CMS behind a Sucuri WAF
+    with two live content generations.
+
+- slug: cavite
+  name: Technological University of the Philippines - Cavite
+  short_name: TUP Cavite
+  kind: satellite
+  # Apex returns 403; all routes must use www. docs/08 §4.1
+  website: https://www.tupcavite.edu.ph
+  website_status: active
+  address:
+    city: Dasmarinas
+    province: Cavite
+    region: CALABARZON
+  description: >-
+    Uses departments rather than colleges. This is the vocabulary difference that
+    justifies ADR-002's unit_type discriminator.
+
+- slug: visayas
+  name: Technological University of the Philippines - Visayas
+  short_name: TUP Visayas
+  kind: satellite
+  website: https://tupvisayas.edu.ph
+  website_status: active
+  address:
+    city: Talisay
+    province: Negros Occidental
+    region: Western Visayas
+  description: >-
+    Laravel behind Cloudflare, best-structured of the four sites. Serves AI-crawler
+    directives and a Content-Signal reservation of rights — docs/08 §5.1.
+
+- slug: taguig
+  name: Technological University of the Philippines - Taguig
+  short_name: TUP Taguig
+  kind: satellite
+  website: https://tupt.edu.ph
+  # cPanel-suspended account serving HTTP 200 — NOT 404. A different and more
+  # recoverable state than 'unavailable'. ADR-012, ADR-017, docs/08 §6.
+  website_status: suspended
+  description: >-
+    Modelled as a first-class campus with no live source. The weekly liveness probe
+    opens an issue when the suspended-account page stops being served.

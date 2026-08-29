@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        # Match production's major version. Supabase runs Postgres 17.
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_PASSWORD: dev
+          POSTGRES_DB: tup
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://postgres:dev@localhost:5432/tup
+      DATABASE_URL_POOLED: postgresql://postgres:dev@localhost:5432/tup
+      # CI never touches live TUP sites. docs/05 §1
+      FETCH_MODE: fixtures
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: CI gates
+        run: ./scripts/ci-gates.sh
+
+      - run: pnpm typecheck
+      - run: pnpm lint
+
+      - name: Migrate and seed
+        run: |
+          pnpm db:migrate
+          pnpm db:seed
+
+      - name: Seed is idempotent
+        run: pnpm db:seed
+
+      - run: pnpm test
+
+      - name: Spec drift gate
+        # The OpenAPI document is generated from the code that runs. If it differs from
+        # the committed copy, a public contract changed — that must be intentional and
+        # reviewable, never a side effect. docs/05 §3.2
+        run: |
+          pnpm openapi:generate
+          git diff --exit-code apps/api/openapi.json \
+            || (echo "::error::openapi.json is out of date. Run 'pnpm openapi:generate' and commit the diff." && exit 1)

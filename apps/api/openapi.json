@@ -1,0 +1,388 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TUP Open Data API",
+    "version": "0.1.0"
+  },
+  "components": {
+    "schemas": {
+      "Health": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "degraded"
+            ]
+          },
+          "version": {
+            "type": "string"
+          },
+          "last_successful_ingest_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "hours_since_ingest": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "version",
+          "last_successful_ingest_at",
+          "hours_since_ingest"
+        ]
+      },
+      "Campus": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "enum": [
+              "manila",
+              "cavite",
+              "visayas",
+              "taguig"
+            ],
+            "description": "Campus identifier.",
+            "example": "manila"
+          },
+          "ref": {
+            "type": "string",
+            "description": "Permanent, globally unique public identifier. For a campus this equals slug.",
+            "example": "manila"
+          },
+          "name": {
+            "type": "string"
+          },
+          "short_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "description": "main | satellite | extension",
+            "example": "main"
+          },
+          "website": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical origin. Two campuses do not serve on the host you would guess."
+          },
+          "website_status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "unavailable",
+              "suspended",
+              "blocked",
+              "retired"
+            ],
+            "description": "Liveness of the campus's public website. 'suspended' means the host serves a suspended-account page (HTTP 200), which differs from 'unavailable'.",
+            "example": "active"
+          },
+          "address": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "street": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              },
+              "province": {
+                "type": "string"
+              },
+              "region": {
+                "type": "string"
+              },
+              "postal": {
+                "type": "string"
+              }
+            }
+          },
+          "established": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/Provenance"
+          }
+        },
+        "required": [
+          "slug",
+          "ref",
+          "name",
+          "short_name",
+          "kind",
+          "website",
+          "website_status",
+          "address",
+          "established",
+          "description",
+          "provenance"
+        ]
+      },
+      "Provenance": {
+        "type": "object",
+        "properties": {
+          "source_url": {
+            "type": "string",
+            "description": "Where this record came from. A citable URL, or seed:// for curated rows."
+          },
+          "first_seen_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When this record was first ingested."
+          },
+          "last_verified_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the source was last confirmed to still say this. NOT when TUP updated it."
+          },
+          "staleness_days": {
+            "type": "integer",
+            "description": "Whole days since last_verified_at."
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ],
+            "description": "How much this record should be trusted. Ascending: low < medium < high. Derived from source freshness and entity type, not from parser certainty.",
+            "example": "high"
+          },
+          "method": {
+            "type": "string",
+            "description": "crawl | manual | partner_feed | seed",
+            "example": "seed"
+          }
+        },
+        "required": [
+          "source_url",
+          "first_seen_at",
+          "last_verified_at",
+          "staleness_days",
+          "confidence",
+          "method"
+        ]
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "URI identifying the error class. Resolves to docs."
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer"
+          },
+          "detail": {
+            "type": "string",
+            "description": "Names the offending value, not just the class."
+          },
+          "instance": {
+            "type": "string"
+          },
+          "did_you_mean": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Trigram-similar identifiers, on 404 for a slug-shaped path."
+          }
+        },
+        "required": [
+          "type",
+          "title",
+          "status",
+          "detail"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "Liveness and ingestion freshness",
+        "description": "Reports whether the API is serving and how long since ingestion last succeeded. `hours_since_ingest` is public on purpose: the API reports its own staleness rather than asking anyone to take freshness on faith.",
+        "responses": {
+          "200": {
+            "description": "Service is reachable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/campuses": {
+      "get": {
+        "tags": [
+          "campuses"
+        ],
+        "summary": "List every campus in the TUP system",
+        "description": "Four campuses, including Taguig, which has no live source. Taguig is modelled as a first-class campus with `website_status: \"suspended\"` rather than omitted — absence would be indistinguishable from \"we did not look\".",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "main",
+                "satellite",
+                "extension"
+              ],
+              "description": "Filter by campus kind."
+            },
+            "required": false,
+            "description": "Filter by campus kind.",
+            "name": "kind",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All campuses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Campus"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "count": {
+                          "type": "integer"
+                        },
+                        "has_more": {
+                          "type": "boolean"
+                        }
+                      },
+                      "required": [
+                        "count",
+                        "has_more"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data",
+                    "meta"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified — the If-None-Match ETag still matches."
+          },
+          "400": {
+            "description": "Unknown or invalid query parameter.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/campuses/{slug}": {
+      "get": {
+        "tags": [
+          "campuses"
+        ],
+        "summary": "Get one campus by slug",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "description": "Campus slug.",
+              "example": "manila"
+            },
+            "required": true,
+            "description": "Campus slug.",
+            "name": "slug",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The campus.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Campus"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified — the If-None-Match ETag still matches."
+          },
+          "404": {
+            "description": "No campus with that slug. Includes trigram-similar suggestions.",
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {}
+}

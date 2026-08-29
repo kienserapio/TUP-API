@@ -1,0 +1,107 @@
+TUP source landscape verification
+run at: 2026-08-20T13:07:25Z
+user-agent: TUPOpenDataBot/1.0 (+https://github.com/<org>/tup-open-api; student open-data project; <contact-email>)
+delay: 3s between requests
+
+============================================================
+1. CANONICAL ORIGINS  (expected: manila=apex, cavite=www, visayas=apex)
+============================================================
+  manila   apex   https://tup.edu.ph/                      HTTP 200  h2  100496b  final=https://tup.edu.ph/
+  manila   www    https://www.tup.edu.ph/                  HTTP 200  h2  100496b  final=https://www.tup.edu.ph/
+  cavite   apex   https://tupcavite.edu.ph/                HTTP 403  h2  3566b  final=https://tupcavite.edu.ph/
+  cavite   www    https://www.tupcavite.edu.ph/            HTTP 200  h2  113129b  final=https://www.tupcavite.edu.ph/
+  visayas  apex   https://tupvisayas.edu.ph/               HTTP 200  h2  44355b  final=https://tupvisayas.edu.ph/
+
+============================================================
+2. ROBOTS.TXT AND CONTENT SIGNALS
+============================================================
+  manila  https://tup.edu.ph/robots.txt
+      HTTP 200
+      ABSENT (non-200 or HTML body) — allow-all per RFC 9309
+      NOTE: cache this fact with a 24h TTL; a robots.txt can appear at any time
+  cavite  https://www.tupcavite.edu.ph/robots.txt
+      HTTP 404
+      ABSENT (non-200 or HTML body) — allow-all per RFC 9309
+      NOTE: cache this fact with a 24h TTL; a robots.txt can appear at any time
+  visayas https://tupvisayas.edu.ph/robots.txt
+      HTTP 200
+      PRESENT
+      SIGNAL: Content-Signal: search=yes,ai-train=no,use=reference
+      user-agent groups: 11
+      | User-agent: *
+      | Allow: /
+      | User-agent: Amazonbot
+      | Disallow: /
+      | User-agent: Applebot-Extended
+      | Disallow: /
+      | User-agent: Bytespider
+      | Disallow: /
+      | User-agent: CCBot
+      | Disallow: /
+      | User-agent: ClaudeBot
+      | Disallow: /
+      | User-agent: CloudflareBrowserRenderingCrawler
+      | Disallow: /
+      | User-agent: Google-Extended
+      | Disallow: /
+      | User-agent: GPTBot
+      | Disallow: /
+      | User-agent: meta-externalagent
+      | Disallow: /
+      | User-agent: *
+      | Disallow:
+
+============================================================
+3. TRANSPORT AND CACHE VALIDATORS  (expected: NO validators anywhere)
+============================================================
+  manila  /pages/students/student-scholarship
+      HTTP/1.1 200 OK
+      X-Sucuri-ID: 18012
+      Server: Sucuri/Cloudproxy
+      X-Sucuri-Cache: EXPIRED
+      Alt-Svc: h3=":443"; ma=86400
+      validators: ABSENT — must use content-hash gating (errata E2)
+------------------------------------------------------------
+  cavite  /programs
+      HTTP/2 200 
+      server: nginx
+      validators: ABSENT — must use content-hash gating (errata E2)
+------------------------------------------------------------
+  visayas /academics/undergraduate-programs
+      HTTP/2 200 
+      server: cloudflare
+      cache-control: no-cache, private
+      cf-ray: a2e19fd1eef80977-HKG
+      alt-svc: h3=":443"; ma=86400
+      validators: ABSENT — must use content-hash gating (errata E2)
+
+============================================================
+4. HTTP/2 STABILITY  (expected: manila UNSTABLE)
+============================================================
+  manila  /page/academics                                  stable (3/3)
+  cavite  /programs                                        stable (3/3)
+  visayas /officials                                       stable (3/3)
+
+============================================================
+5. FLAGSHIP ROUTES  (expected: all 200 with plausible size)
+============================================================
+  manila  /pages/admission/undergraduate-programs          HTTP 200  h1.1  42842b  final=https://tup.edu.ph/pages/admission/undergraduate-programs
+  manila  /pages/students/student-scholarship              HTTP 200  h1.1  44452b  final=https://tup.edu.ph/pages/students/student-scholarship
+  manila  /page/academics                                  HTTP 200  h1.1  47556b  final=https://tup.edu.ph/page/academics
+  cavite  /programs                                        HTTP 200  h2  91225b  final=https://www.tupcavite.edu.ph/programs
+  cavite  /dept/engineering                                HTTP 200  h2  98444b  final=https://www.tupcavite.edu.ph/dept/engineering
+  cavite  /news                                            HTTP 200  h2  87606b  final=https://www.tupcavite.edu.ph/news
+  visayas /academics/undergraduate-programs                HTTP 200  h2  60821b  final=https://tupvisayas.edu.ph/academics/undergraduate-programs
+  visayas /officials                                       HTTP 200  h2  58020b  final=https://tupvisayas.edu.ph/officials
+
+============================================================
+6. TAGUIG LIVENESS  (corrected predicate — errata E13)
+============================================================
+  HTTP 200  final=https://tupt.edu.ph/cgi-sys/suspendedpage.cgi  bytes=8257
+  not live (suspended/placeholder) — website_status stays "suspended"
+
+============================================================
+DONE
+============================================================
+Diff this output against docs/08-source-landscape.md.
+Any difference is a finding: it changes what the project may or can do.
