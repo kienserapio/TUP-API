@@ -7,6 +7,7 @@
  * once per run. That is what keeps "snapshots retained indefinitely" compatible with
  * a 1 GB free tier — errata E18.
  */
+import { fetch } from 'undici';
 import { gzip, gunzip } from 'node:zlib';
 import { promisify } from 'node:util';
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
@@ -90,7 +91,13 @@ export class MemorySnapshotStore implements SnapshotStore {
 }
 
 /**
- * Supabase Storage over its S3-compatible REST surface. Used only in production —
+ * Supabase Storage over its S3-compatible REST surface.
+ *
+ * `fetch` is imported from undici rather than taken from the global scope. Every other
+ * network call in this package already goes through undici, and a global depends on
+ * whichever ambient type definitions a given build happens to resolve — which is how
+ * this file compiled locally and failed on a deploy with `Property 'ok' does not exist
+ * on type 'Response'`. Used only in production —
  * the service role key bypasses every row-level protection and is server-side only
  * (docs/15 §3.2).
  */

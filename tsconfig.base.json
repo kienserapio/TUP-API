@@ -9,6 +9,11 @@
     "noImplicitOverride": true,
     "exactOptionalPropertyTypes": false,
     "verbatimModuleSyntax": true,
+    // Explicit, not inherited from ambient discovery. `fetch`/`Response`/`Buffer` come
+    // from @types/node; when a build resolved them by walking up node_modules instead
+    // of being told, `Response` lost `ok`/`status` and the deploy failed on globals
+    // that work everywhere else.
+    "types": ["node"],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,

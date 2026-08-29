@@ -14,7 +14,12 @@ coverage/
 .vscode/
 .idea/
 
+# esbuild bundle for the Vercel function — built at deploy time, never committed
+apps/api/api/
+
 # ingest artifacts
 snapshots/
 .snapshots/
 *.log
+.vercel
+.env*

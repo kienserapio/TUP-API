@@ -24,12 +24,32 @@ export interface AppEnv {
 export const DOCS_BASE =
   process.env['DOCS_BASE_URL'] ?? 'https://github.com/kienserapio/TUP-API/blob/main/docs';
 
+/**
+ * Zod's validation result reaches the hook as an intersection of a discriminated union.
+ * Narrowing it with `!result.success` works under this repo's `strict: true`, and does
+ * not under a build that compiles with looser defaults — which is exactly what happened
+ * the first time this deployed. An explicit guard is narrowing-independent, so the
+ * handler compiles the same way everywhere.
+ */
+interface ValidationFailure {
+  success: false;
+  error: { issues: { path: PropertyKey[]; message: string; code: string }[] };
+}
+
+function isValidationFailure(result: unknown): result is ValidationFailure {
+  return (
+    typeof result === 'object' &&
+    result !== null &&
+    (result as { success?: unknown }).success === false
+  );
+}
+
 export function createApp() {
   const app = new OpenAPIHono<AppEnv>({
     // Zod rejected the request. Surface it as RFC 9457 rather than Hono's default,
     // and name the offending parameter. docs/13 §8.2.
     defaultHook: (result, c) => {
-      if (!result.success) {
+      if (isValidationFailure(result)) {
         const first = result.error.issues[0];
         const path = first?.path.join('.') ?? 'request';
         const detail =

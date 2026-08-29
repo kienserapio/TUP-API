@@ -3,7 +3,17 @@ import tseslint from 'typescript-eslint';
 import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
-  { ignores: ['**/dist/**', '**/node_modules/**', '**/*.json', 'fixtures/**', 'docs/**'] },
+  {
+    ignores: [
+      '**/dist/**',
+      '**/node_modules/**',
+      '**/*.json',
+      'fixtures/**',
+      'docs/**',
+      // esbuild output for the Vercel function; generated, never authored.
+      'apps/api/api/**',
+    ],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   prettier,
@@ -15,6 +25,23 @@ export default tseslint.config(
       ],
       '@typescript-eslint/consistent-type-imports': 'warn',
       'no-console': 'off',
+    },
+  },
+  {
+    // Plain .js/.mjs here are Node scripts — the esbuild build and the post-deploy
+    // smoke tests. TypeScript files get these globals from @types/node; these do not,
+    // so declare them rather than turning the rule off and losing real typos.
+    files: ['**/*.js', '**/*.mjs'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+        console: 'readonly',
+        fetch: 'readonly',
+        URL: 'readonly',
+        Buffer: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+      },
     },
   },
   {
