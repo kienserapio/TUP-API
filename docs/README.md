@@ -28,6 +28,7 @@ An open, versioned, multi-campus API that normalizes public institutional data a
 | 13 | [`13-api-design-standards.md`](./13-api-design-standards.md) | What rules must every endpoint follow? Naming, envelope, errors, versioning. | Implementers, reviewers |
 | 14 | [`14-testing-strategy.md`](./14-testing-strategy.md) | What do I test, what do I skip, and which CI gates enforce it? | Implementers |
 | 15 | [`15-local-development.md`](./15-local-development.md) | How do I get this running on my machine, today, with no cloud account? | You, day one |
+| 16 | [`16-session-handover.md`](./16-session-handover.md) | What is true right now, what was just decided, what happens next? | Whoever picks this up |
 | 16 | [`checkpoints/`](./checkpoints/README.md) | What can I run to prove each module works before building the next? One file per module, M0–M12. | You, during the build |
 
 ### Read before any of them
