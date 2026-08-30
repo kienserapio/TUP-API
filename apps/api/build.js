@@ -16,7 +16,10 @@
 import { build } from 'esbuild';
 import { mkdir, writeFile, rm } from 'node:fs/promises';
 
-const OUT = '../../.vercel/output';
+// Relative to this package, NOT the repo root: Vercel's Root Directory is apps/api,
+// so it looks for apps/api/.vercel/output. Writing to the repo root built cleanly and
+// then failed with "No Output Directory found" — a green build with nothing served.
+const OUT = '.vercel/output';
 const FUNC = `${OUT}/functions/index.func`;
 
 await rm(OUT, { recursive: true, force: true });
