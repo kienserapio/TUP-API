@@ -18,11 +18,28 @@ afterAll(async () => {
 
 describe('confidence_level enum ordering [E1]', () => {
   test('is declared ascending', async () => {
+    // Scoped to `public` on purpose. The pipeline integration tests build a throwaway
+    // schema with the full migration set in it, so a catalog-wide query matches
+    // `confidence_level` twice while those tests are running and returns six labels.
+    // Vitest runs test files in parallel, which made that a coin flip: green locally,
+    // red in CI. The assertion is about the shipped schema, so name it.
     const [row] = await sql<{ order: string }[]>`
       SELECT string_agg(e.enumlabel, ',' ORDER BY e.enumsortorder) AS order
-      FROM pg_enum e JOIN pg_type t ON t.oid = e.enumtypid
-      WHERE t.typname = 'confidence_level'`;
+      FROM pg_enum e
+      JOIN pg_type t ON t.oid = e.enumtypid
+      JOIN pg_namespace n ON n.oid = t.typnamespace
+      WHERE t.typname = 'confidence_level' AND n.nspname = 'public'`;
     expect(row?.order).toBe('low,medium,high');
+  });
+
+  test('is declared exactly once in the public schema', async () => {
+    // The guard against the above regressing into a query that silently aggregates
+    // several types and happens to produce the right string.
+    const [row] = await sql<{ n: number }[]>`
+      SELECT count(*)::int AS n
+      FROM pg_type t JOIN pg_namespace n ON n.oid = t.typnamespace
+      WHERE t.typname = 'confidence_level' AND n.nspname = 'public'`;
+    expect(row?.n).toBe(1);
   });
 
   test('orders correctly in a real comparison, so min_confidence filters the right way', async () => {
