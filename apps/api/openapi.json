@@ -817,6 +817,61 @@
         }
       }
     },
+    "/": {
+      "get": {
+        "tags": [
+          "meta"
+        ],
+        "summary": "Service index",
+        "responses": {
+          "200": {
+            "description": "What this is and where to go next.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    },
+                    "documentation": {
+                      "type": "string"
+                    },
+                    "openapi": {
+                      "type": "string"
+                    },
+                    "endpoints": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "notice": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "description",
+                    "version",
+                    "documentation",
+                    "openapi",
+                    "endpoints",
+                    "notice"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/v1/meta/coverage": {
       "get": {
         "tags": [

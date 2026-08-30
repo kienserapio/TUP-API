@@ -10,8 +10,8 @@ export default tseslint.config(
       '**/*.json',
       'fixtures/**',
       'docs/**',
-      // esbuild output for the Vercel function; generated, never authored.
-      'apps/api/api/**',
+      // Vercel build output; generated, never authored.
+      '.vercel/**',
     ],
   },
   js.configs.recommended,

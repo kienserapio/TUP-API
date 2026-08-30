@@ -2,6 +2,7 @@ import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi';
 import { campusCoverage } from '@tup/schemas';
 import { sql as raw } from 'drizzle-orm';
 import { db } from '../lib/db.js';
+import { DOCS_BASE as DOCS_REPO } from '../app.js';
 import { CACHE_REFERENCE, etagFor } from '../lib/etag.js';
 
 /**
@@ -20,6 +21,37 @@ const ENTITY_TABLES: { entityType: string; table: string }[] = [
   { entityType: 'fee_estimate', table: 'fee_estimates' },
   { entityType: 'procedure', table: 'procedures' },
 ];
+
+/**
+ * The front door. Landing on the bare origin of an API and getting a 404 tells a
+ * visitor nothing about whether the service is broken or they are — and the first
+ * thing anyone does with a URL is open it. This is the cheapest possible fix, and it
+ * makes the API self-describing without a docs site.
+ */
+const indexRoute = createRoute({
+  method: 'get',
+  path: '/',
+  tags: ['meta'],
+  summary: 'Service index',
+  responses: {
+    200: {
+      description: 'What this is and where to go next.',
+      content: {
+        'application/json': {
+          schema: z.object({
+            name: z.string(),
+            description: z.string(),
+            version: z.string(),
+            documentation: z.string(),
+            openapi: z.string(),
+            endpoints: z.array(z.string()),
+            notice: z.string(),
+          }),
+        },
+      },
+    },
+  },
+});
 
 const route = createRoute({
   method: 'get',
@@ -57,7 +89,41 @@ type CountRow = Record<string, unknown> & {
   n: number;
 };
 
-export const metaRoutes = new OpenAPIHono().openapi(route, async (c) => {
+export const metaRoutes = new OpenAPIHono()
+  .openapi(indexRoute, (c) => {
+    c.header('Cache-Control', CACHE_REFERENCE);
+    return c.json(
+      {
+        name: 'TUP Open Data API',
+        description:
+          'Public institutional data across the Technological University of the ' +
+          'Philippines system. Every record carries provenance in the default payload: ' +
+          'read provenance.last_verified_at and provenance.confidence before asserting ' +
+          'anything to a student.',
+        version: '0.1.0',
+        documentation: DOCS_REPO,
+        openapi: '/openapi.json',
+        endpoints: [
+          '/v1/health',
+          '/v1/meta/coverage',
+          '/v1/campuses',
+          '/v1/campuses/{campus}',
+          '/v1/campuses/{campus}/units',
+          '/v1/units',
+          '/v1/units/{campus}/{unit}',
+          '/v1/programs',
+          '/v1/programs/{slug}',
+          '/v1/offerings',
+          '/v1/offerings/{campus}/{program}',
+        ],
+        notice:
+          'Unofficial. Aggregated from public TUP websites, and not endorsed by the ' +
+          'university. Content is never used to train or fine-tune any model.',
+      },
+      200,
+    );
+  })
+  .openapi(route, async (c) => {
   const campuses = await db.execute<{
     slug: string;
     name: string;
